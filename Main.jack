@@ -17,9 +17,21 @@ class Main {
 
         //var PrintBentLineUpper figure;
         //do figure.print(10, 10);
-
-        //var PrintZFigureLeft figure;
-        //do figure.print(20, 20);
+        var ZFigureLeft zFigureLeft;
+        var ZFigureRight zFigureRight;
+        var Line line;
+        var BentLineUnder bentLineUnder;
+        var BigSquare BS;
+        var BentLineUpper bentLineUpper;
+        var LineWithSquare lineWithSquare;
+        do Screen.drawRectangle(96, 80, 100, 100);
+        //let line = Line.new(16, 10);
+        //let BS = BigSquare.new(16, 10);
+        //let bentLineUnder = BentLineUnder.new(16, 10);
+        //let bentLineUpper = BentLineUpper.new(16, 10);
+        //let lineWithSquare = LineWithSquare.new(16, 32);
+        //let zFigureLeft = ZFigureLeft.new(48, 0);
+        let zFigureRight = ZFigureRight.new(80, 0);
         return;
     }
 }

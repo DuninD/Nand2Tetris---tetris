@@ -1,0 +1,6 @@
+CHIP Buffer {
+    IN in;
+    OUT out;
+    
+    BUILTIN Buffer;
+}

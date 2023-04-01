@@ -1,10 +1,14 @@
-function BasedSquare.new 0
+function BasedSquare.new 1
 push constant 2
 call Memory.alloc 1
 pop pointer 0
 push argument 0
+push argument 1
+call Point.new 2
+pop local 0
+push local 0
 pop this 0
-push constant 10
+push constant 15
 pop this 1
 push pointer 0
 return
@@ -24,6 +28,16 @@ function BasedSquare.getPoint 0
 push argument 0
 pop pointer 0
 push this 0
+return
+function BasedSquare.setSquare 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push argument 2
+call Point.setPoint 3
+pop temp 0
+push constant 0
 return
 function BasedSquare.printSquare 0
 push argument 0

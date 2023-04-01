@@ -3,11 +3,21 @@ class LineWithSquare{
     field BasedSquare Square2;
     field BasedSquare Square3;
     field BasedSquare Square4;
-    constructor LineWithSquare new(BasedSquare square1,BasedSquare square2,BasedSquare square3,BasedSquare square4){
+    constructor LineWithSquare new(int x, int y){
+        var BasedSquare square1;
+        var BasedSquare square2;
+        var BasedSquare square3;
+        var BasedSquare square4;
+        let square1 = BasedSquare.new(x, y);
+        let square2 = BasedSquare.new(x + 16, y);
+        let square3 = BasedSquare.new(x + 32, y);
+        let square4 = BasedSquare.new(x + 16, y - 16);
         let Square1 = square1;
         let Square2 = square2;
         let Square3 = square3;
         let Square4 = square4;
+        do printLineWithSquare();
+        do fall();
         return this;
     }
     method LineWithSquare getSquare1(){
@@ -21,6 +31,36 @@ class LineWithSquare{
     }
     method LineWithSquare getSquare4(){
         return Square4;
+    }
+    method void fall(){
+        var Speed speed;
+        var int address1;
+        var int address2;
+        var int address3;
+        var int address4;
+        let address1 = 16384 + ((Square1.getSquareY()+16) * 32) + (Square1.getSquareX() / 16);
+        let address2 = 16384 + ((Square2.getSquareY()+16) * 32) + (Square2.getSquareX() / 16);
+        let address3 = 16384 + ((Square3.getSquareY()+16) * 32) + (Square3.getSquareX() / 16);
+        let address4 = 16384 + ((Square4.getSquareY()+16) * 32) + (Square4.getSquareX() / 16);
+        let speed = Speed.new();
+        do Sys.wait(speed.getSpeed());
+        if ((Memory.peek(address1) = 0) & (Memory.peek(address2) = 0) & (Memory.peek(address3) = 0))
+        {  
+            do Screen.setColor(false);
+            do printLineWithSquare();
+            do fallToOnePixel();
+            do Screen.setColor(true);
+            do printLineWithSquare();
+            do fall();
+         }
+         return;
+    }
+    method void fallToOnePixel(){
+        do Square1.setSquare(Square1.getSquareX(), Square1.getSquareY() + 1);
+        do Square2.setSquare(Square2.getSquareX(), Square2.getSquareY() + 1);
+        do Square3.setSquare(Square3.getSquareX(), Square3.getSquareY() + 1);
+        do Square4.setSquare(Square4.getSquareX(), Square4.getSquareY() + 1);
+        return;
     }
     method void printLineWithSquare(){
         do Square1.printSquare();

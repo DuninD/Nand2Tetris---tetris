@@ -1,0 +1,59 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/Mux8Way16.hdl
+
+/**
+ * 8-way 16-bit multiplexor:
+ * out = a if sel == 000
+ *       b if sel == 001
+ *       etc.
+ *       h if sel == 111
+ */
+
+CHIP Mux8Way16 {
+    IN a[16], b[16], c[16], d[16],
+       e[16], f[16], g[16], h[16],
+       sel[3];
+    OUT out[16];
+
+    PARTS:
+    // Put your code here:
+    Mux16 (a=true, b=false, sel=sel[2], out=resultABCD);
+    Not16 (in=resultABCD, out=resultEFGH);
+    And16 (a=a, b=resultABCD, out=newA);
+    And16 (a=b, b=resultABCD, out=newB);
+    And16 (a=c, b=resultABCD, out=newC);
+    And16 (a=d, b=resultABCD, out=newD);
+    And16 (a=e, b=resultEFGH, out=newE);
+    And16 (a=f, b=resultEFGH, out=newF);
+    And16 (a=g, b=resultEFGH, out=newG);
+    And16 (a=h, b=resultEFGH, out=newH);
+    Mux16 (a=true, b=false, sel=sel[1], out=resultABEF);
+    Not16 (in=resultABEF, out=resultCDGH);
+    And16 (a=newA, b=resultABEF, out=new2A);
+    And16 (a=newB, b=resultABEF, out=new2B);
+    And16 (a=newE, b=resultABEF, out=new2E);
+    And16 (a=newF, b=resultABEF, out=new2F);
+    And16 (a=newC, b=resultCDGH, out=new2C);
+    And16 (a=newD, b=resultCDGH, out=new2D);
+    And16 (a=newG, b=resultCDGH, out=new2G);
+    And16 (a=newH, b=resultCDGH, out=new2H);
+    Mux16 (a=true, b=false, sel=sel[0], out=resultACEG);
+    Not16 (in=resultACEG, out=resultBDFH);
+    And16 (a=new2A, b=resultACEG, out=new3A);
+    And16 (a=new2C, b=resultACEG, out=new3C);
+    And16 (a=new2E, b=resultACEG, out=new3E);
+    And16 (a=new2G, b=resultACEG, out=new3G);
+    And16 (a=new2B, b=resultBDFH, out=new3B);
+    And16 (a=new2D, b=resultBDFH, out=new3D);
+    And16 (a=new2F, b=resultBDFH, out=new3F);
+    And16 (a=new2H, b=resultBDFH, out=new3H);
+    Or16 (a=new3A, b=new3B, out=AorB);
+    Or16 (a=new3C, b=new3D, out=CorD);
+    Or16 (a=new3E, b=new3F, out=EorF);
+    Or16 (a=new3G, b=new3H, out=GorH);
+    Or16 (a=AorB, b=CorD, out=AorBorCorD);
+    Or16 (a=EorF, b=GorH, out=EorForGorH);
+    Or16 (a=AorBorCorD, b=EorForGorH, out=out);
+}

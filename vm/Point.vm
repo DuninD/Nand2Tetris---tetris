@@ -23,3 +23,12 @@ push argument 0
 pop pointer 0
 push pointer 0
 return
+function Point.setPoint 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 0
+push argument 2
+pop this 1
+push constant 0
+return

@@ -1,8 +1,13 @@
-function Main.main 1
-push local 0
-push constant 20
-push constant 20
-call PrintZFigureLeft.print 3
+function Main.main 7
+push constant 96
+push constant 80
+push constant 100
+push constant 100
+call Screen.drawRectangle 4
 pop temp 0
+push constant 80
+push constant 0
+call ZFigureRight.new 2
+pop local 1
 push constant 0
 return

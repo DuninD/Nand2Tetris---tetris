@@ -15,4 +15,9 @@ class Point {
     method Point getPoint(){
         return this;
     }
+    method void setPoint(int x,int y){
+        let X = x;
+        let Y = y;
+        return;
+    }
 }

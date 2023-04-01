@@ -1,0 +1,10 @@
+class Speed{
+    field int Value;
+    constructor Speed new(){
+        let Value = 50;
+        return this;
+    }
+    method int getSpeed(){
+        return Value;
+    }
+}

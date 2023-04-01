@@ -1,0 +1,15 @@
+CHIP Clock {
+    IN period[16], reset;
+    OUT ticks[16], loop;
+
+    PARTS:
+    Inc16(in=lastTicks, out=lastTicksPlusOne);
+    Not16(in=lastTicksPlusOne, out=notLastTicks);
+    Add16(a=notLastTicks, b=period, out=notRes);
+    Not16(in=notRes, out[15]=res);
+    Not(in=res, out=reset0);
+    Or(a=reset0, b=reset, out=reset1);
+    PC(in=false, load=false, inc=true, reset=reset1, out=lastTicks, out=ticks);
+    Or16Way(in=lastTicks, out=pool);
+    Not(in=pool, out=loop);
+}

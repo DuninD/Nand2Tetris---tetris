@@ -1,15 +1,45 @@
-function ZFigureRight.new 0
+function ZFigureRight.new 4
 push constant 4
 call Memory.alloc 1
 pop pointer 0
 push argument 0
-pop this 0
 push argument 1
+call BasedSquare.new 2
+pop local 0
+push argument 0
+push constant 16
+add
+push argument 1
+call BasedSquare.new 2
+pop local 1
+push argument 0
+push argument 1
+push constant 16
+add
+call BasedSquare.new 2
+pop local 2
+push argument 0
+push constant 16
+sub
+push argument 1
+push constant 16
+add
+call BasedSquare.new 2
+pop local 3
+push local 0
+pop this 0
+push local 1
 pop this 1
-push argument 2
+push local 2
 pop this 2
-push argument 3
+push local 3
 pop this 3
+push pointer 0
+call ZFigureRight.printZFigureRight 1
+pop temp 0
+push pointer 0
+call ZFigureRight.fall 1
+pop temp 0
 push pointer 0
 return
 function ZFigureRight.getSquare1 0
@@ -31,6 +61,137 @@ function ZFigureRight.getSquare4 0
 push argument 0
 pop pointer 0
 push this 3
+return
+function ZFigureRight.fall 4
+push argument 0
+pop pointer 0
+push constant 16384
+push this 1
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 1
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push constant 16384
+push this 2
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 2
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 2
+push constant 16384
+push this 3
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 3
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 3
+call Speed.new 0
+pop local 0
+push local 0
+call Speed.getSpeed 1
+call Sys.wait 1
+pop temp 0
+push local 1
+call Memory.peek 1
+push constant 0
+eq
+push local 3
+call Memory.peek 1
+push constant 0
+eq
+and
+push local 2
+call Memory.peek 1
+push constant 0
+eq
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push pointer 0
+call ZFigureRight.printZFigureRight 1
+pop temp 0
+push pointer 0
+call ZFigureRight.fallToOnePixel 1
+pop temp 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push pointer 0
+call ZFigureRight.printZFigureRight 1
+pop temp 0
+push pointer 0
+call ZFigureRight.fall 1
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function ZFigureRight.fallToOnePixel 0
+push argument 0
+pop pointer 0
+push this 0
+push this 0
+call BasedSquare.getSquareX 1
+push this 0
+call BasedSquare.getSquareY 1
+push constant 1
+add
+call BasedSquare.setSquare 3
+pop temp 0
+push this 1
+push this 1
+call BasedSquare.getSquareX 1
+push this 1
+call BasedSquare.getSquareY 1
+push constant 1
+add
+call BasedSquare.setSquare 3
+pop temp 0
+push this 2
+push this 2
+call BasedSquare.getSquareX 1
+push this 2
+call BasedSquare.getSquareY 1
+push constant 1
+add
+call BasedSquare.setSquare 3
+pop temp 0
+push this 3
+push this 3
+call BasedSquare.getSquareX 1
+push this 3
+call BasedSquare.getSquareY 1
+push constant 1
+add
+call BasedSquare.setSquare 3
+pop temp 0
+push constant 0
 return
 function ZFigureRight.printZFigureRight 0
 push argument 0

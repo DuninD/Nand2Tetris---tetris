@@ -1,0 +1,11 @@
+/**
+ * Nand16 gate: out = a Nand b.
+ */
+
+CHIP Nand16 {
+
+    IN  a[16], b[16];
+    OUT out[16];
+
+    BUILTIN Nand16;
+}

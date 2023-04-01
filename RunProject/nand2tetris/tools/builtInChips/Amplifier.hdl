@@ -1,0 +1,10 @@
+/**
+ * A amplifier from 1-bit to 16-bit
+ */
+
+CHIP Amplifier {
+    IN in;
+    OUT out[16];
+
+    BUILTIN Amplifier;
+}

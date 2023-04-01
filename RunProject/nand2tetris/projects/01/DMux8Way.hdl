@@ -1,0 +1,47 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/DMux8Way.hdl
+
+/**
+ * 8-way demultiplexor:
+ * {a, b, c, d, e, f, g, h} = {in, 0, 0, 0, 0, 0, 0, 0} if sel == 000
+ *                            {0, in, 0, 0, 0, 0, 0, 0} if sel == 001
+ *                            etc.
+ *                            {0, 0, 0, 0, 0, 0, 0, in} if sel == 111
+ */
+
+CHIP DMux8Way {
+    IN in, sel[3];
+    OUT a, b, c, d, e, f, g, h;
+
+    PARTS:
+    // Put your code here:
+    Not (in=sel[0], out=sel0Not);
+    Not (in=sel[1], out=sel1Not);
+    Not (in=sel[2], out=sel2Not);
+    And (a=sel2Not, b=sel1Not, out=demokoaffA);
+    And (a=demokoaffA, b=sel0Not, out=koaffA);
+    And (a=sel2Not, b=sel1Not, out=demokoaffB);
+    And (a=demokoaffB, b=sel[0], out=koaffB);
+    And (a=sel2Not, b=sel[1], out=demokoaffC);
+    And (a=demokoaffC, b=sel0Not, out=koaffC);
+    And (a=sel2Not, b=sel[1], out=demokoaffD);
+    And (a=demokoaffD, b=sel[0], out=koaffD);
+    And (a=sel[2], b=sel1Not, out=demokoaffE);
+    And (a=demokoaffE, b=sel0Not, out=koaffE);
+    And (a=sel[2], b=sel1Not, out=demokoaffF);
+    And (a=demokoaffF, b=sel[0], out=koaffF);
+    And (a=sel[2], b=sel[1], out=demokoaffG);
+    And (a=demokoaffG, b=sel0Not, out=koaffG);
+    And (a=sel[2], b=sel[1], out=demokoaffH);
+    And (a=demokoaffH, b=sel[0], out=koaffH);
+    And (a=koaffA, b=in, out=a);
+    And (a=koaffB, b=in, out=b);
+    And (a=koaffC, b=in, out=c);
+    And (a=koaffD, b=in, out=d);
+    And (a=koaffE, b=in, out=e);
+    And (a=koaffF, b=in, out=f);
+    And (a=koaffG, b=in, out=g);
+    And (a=koaffH, b=in, out=h);
+}
