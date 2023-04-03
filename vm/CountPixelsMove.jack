@@ -1,0 +1,10 @@
+class CountPixelsMove{
+    field int Value;
+    constructor CountPixelsMove new(){
+        let Value = 2;
+        return this;
+    }
+    method int getCountPixelsMove(){
+        return Value;
+    }
+}

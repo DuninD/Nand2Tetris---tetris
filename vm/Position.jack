@@ -1,0 +1,28 @@
+class Position{
+    field int Pos;
+    constructor Position new(){
+        let Pos = 0;
+        return this;
+    }
+    method void TurnRight(){
+        if (Pos = 3){
+            let Pos = 0;
+        }
+        else{
+            let Pos = Pos + 1;
+        }
+        return;
+    }
+    method void TurnLeft(){
+        if (Pos = 0){
+            let Pos = 3;
+        }
+        else{
+            let Pos = Pos - 1;
+        }
+        return;
+    }
+    method int GetPosition(){
+        return Pos;
+    }
+}

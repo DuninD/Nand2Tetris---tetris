@@ -1,0 +1,53 @@
+function Position.new 0
+push constant 1
+call Memory.alloc 1
+pop pointer 0
+push constant 0
+pop this 0
+push pointer 0
+return
+function Position.TurnRight 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 3
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop this 0
+goto IF_END0
+label IF_FALSE0
+push this 0
+push constant 1
+add
+pop this 0
+label IF_END0
+push constant 0
+return
+function Position.TurnLeft 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 3
+pop this 0
+goto IF_END0
+label IF_FALSE0
+push this 0
+push constant 1
+sub
+pop this 0
+label IF_END0
+push constant 0
+return
+function Position.GetPosition 0
+push argument 0
+pop pointer 0
+push this 0
+return

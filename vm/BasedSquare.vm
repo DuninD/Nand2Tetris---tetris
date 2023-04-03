@@ -57,4 +57,112 @@ add
 call Screen.drawRectangle 4
 pop temp 0
 push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 0
+call Point.getX 1
+push constant 1
+add
+push this 0
+call Point.getY 1
+push constant 1
+add
+push this 0
+call Point.getX 1
+push this 1
+add
+push constant 4
+sub
+push this 0
+call Point.getY 1
+push this 1
+add
+push constant 4
+sub
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push this 0
+call Point.getX 1
+push constant 2
+add
+push this 0
+call Point.getY 1
+push constant 2
+add
+push this 0
+call Point.getX 1
+push this 1
+add
+push constant 4
+sub
+push this 0
+call Point.getY 1
+push this 1
+add
+push constant 4
+sub
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function BasedSquare.clear 0
+push argument 0
+pop pointer 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 0
+call Point.getX 1
+push this 0
+call Point.getY 1
+push this 0
+call Point.getX 1
+push this 1
+add
+push this 0
+call Point.getY 1
+push this 1
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function BasedSquare.CanDraw 1
+push argument 0
+pop pointer 0
+push constant 16384
+push this 0
+call Point.getY 1
+push constant 15
+add
+push constant 32
+call Math.multiply 2
+add
+push this 0
+call Point.getX 1
+push constant 16
+call Math.divide 2
+add
+pop local 0
+push local 0
+call Memory.peek 1
+push constant 0
+gt
+push local 0
+call Memory.peek 1
+push constant 0
+eq
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
 return

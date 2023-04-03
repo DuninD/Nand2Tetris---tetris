@@ -1,12 +1,12 @@
-function Speed.new 0
+function CountPixelsMove.new 0
 push constant 1
 call Memory.alloc 1
 pop pointer 0
-push constant 30
+push constant 2
 pop this 0
 push pointer 0
 return
-function Speed.getSpeed 0
+function CountPixelsMove.getCountPixelsMove 0
 push argument 0
 pop pointer 0
 push this 0
