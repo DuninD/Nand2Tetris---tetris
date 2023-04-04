@@ -1,0 +1,23 @@
+class MovementTime{
+    field int Count;
+    constructor MovementTime new(){
+        let Count = 10000;
+        return this;
+    }
+    method int getMovementTime(){
+        return Count;
+    }
+    method void setZero(){
+        let Count = 0;
+        return;
+    }
+    method void Minus(){
+        let Count = Count - 1;
+        return;
+    }
+    method void setCount(int count){
+        let Count = count;
+        return;
+    }
+}
+

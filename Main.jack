@@ -18,22 +18,26 @@ class Main {
         let bentLineUpper = BentLineUpper.new(16,16);
         */
         
-        var int i;
-        let i = 20;
+        var Line line;
+        var BentLineUnder l;
         do Screen.drawRectangle(79, 0, 99, 250);
         do Screen.drawRectangle(260, 0, 280, 250);
         do Screen.drawRectangle(100, 224, 260, 250);
+        /*
+        var int i;
+        let i = 20;
         while (i > 0) {
             do RandomizeFigure.MakeFigure(180,32);
             let i = i - 1;
-        }
-        //var ZFigureRight line;
-        //let line = ZFigureRight.new(180, 32);
-        //let line = ZFigureRight.new(180, 32);
-        //let line = ZFigureRight.new(180, 32);
-        //let line = ZFigureRight.new(180, 32);
-        //let line = ZFigureRight.new(180, 32);
-        //let zFigureRight = ZFigureRight.new(16, 16);
+        }*/
+        
+        
+        let line = Line.new(180, 32);
+        let line = Line.new(180, 32);
+        let line = Line.new(180, 32);
+        let l = BentLineUnder.new(180, 32);
+        let l = BentLineUnder.new(180, 32);
+        let l = BentLineUnder.new(180, 32);
         return;
     }
 }

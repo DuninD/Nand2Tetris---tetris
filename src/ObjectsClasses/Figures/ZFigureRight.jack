@@ -1,4 +1,5 @@
 class ZFigureRight{
+    field bool Move;
     field Position position;
     field BasedSquare Square1;
     field BasedSquare Square2;
@@ -15,6 +16,7 @@ class ZFigureRight{
         let square2 = BasedSquare.new(x + 16, y);
         let square3 = BasedSquare.new(x, y + 16);
         let square4 = BasedSquare.new(x - 16, y + 16);
+        let Move = false;
         let Square1 = square1;
         let Square2 = square2;
         let Square3 = square3;
@@ -38,7 +40,6 @@ class ZFigureRight{
     }
     method void TurnZFigureRight(){
         if (position.GetPosition() = 1){
-            do Screen.setColor(false);
             do Clear();
             do Screen.setColor(true);
             do Square1.setSquare(Square1.getSquareX(), Square1.getSquareY());
@@ -53,7 +54,6 @@ class ZFigureRight{
             }
         }
         if (position.GetPosition() = 2){
-            do Screen.setColor(false);
             do Clear();
             do Screen.setColor(true);
             do Square1.setSquare(Square1.getSquareX(), Square1.getSquareY());
@@ -68,7 +68,6 @@ class ZFigureRight{
             }
         }
         if (position.GetPosition() = 3){
-            do Screen.setColor(false);
             do Clear();
             do Screen.setColor(true);
             do Square1.setSquare(Square1.getSquareX(), Square1.getSquareY());
@@ -83,7 +82,6 @@ class ZFigureRight{
             }
         }
         if (position.GetPosition() = 0){
-            do Screen.setColor(false);
             do Clear();
             do Screen.setColor(true);
             do Square1.setSquare(Square1.getSquareX(), Square1.getSquareY());
@@ -97,9 +95,11 @@ class ZFigureRight{
                 do Square4.setSquare(Square4.getSquareX() + 32, Square4.getSquareY());
             }
         }
+        do printZFigureRight();
         return;
     }
     method void fall(){
+        var MovementTime count;
         var int key;
         var Speed speed;
         var int address1;
@@ -107,81 +107,94 @@ class ZFigureRight{
         var int address3;
         var int address4;
         let speed = Speed.new();
-        let key = Keyboard.keyPressed();
-        if (key = 131){
-            do position.TurnRight();
-            do TurnZFigureRight();
-        }
-        if (key = 133){
-            do position.TurnLeft();
-            do TurnZFigureRight();
-        }
-        if (key = 132){
-            do MoveRight();
-        }
-        if (key = 130){
-            do MoveLeft();
-        }
-        do Sys.wait(speed.getSpeed());
-        if (position.GetPosition() = 0){
-            let address1 = 16384 + ((Square1.getSquareY() + 16) * 32) + (Square1.getSquareX() / 16);
-            let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
-            let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
-            let address4 = 16384 + ((Square4.getSquareY() + 16) * 32) + (Square4.getSquareX() / 16);
-            do Sys.wait(speed.getSpeed());
-            if (((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)) & ((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)) & ((Memory.peek(address4) > 0) | (Memory.peek(address4) = 0)))
-            { 
-                do Screen.setColor(false);
-                do Clear();
-                do fallToPixels();
-                do Screen.setColor(true);
-                do printZFigureRight();
-                do fall();
+        let count = MovementTime.new();
+        while (count.getMovementTime() > 0)
+        {
+            do count.Minus();
+            let key = Keyboard.keyPressed();
+            if (key = 131){
+                do position.TurnRight();
+                do TurnZFigureRight();
+                do count.setZero();
+                do Sys.wait(speed.getSpeed());
+            }
+            if (key = 133){
+                do position.TurnLeft();
+                do TurnZFigureRight();
+                do count.setZero();
+                do Sys.wait(speed.getSpeed());
+            }
+            if (key = 132){
+                do MoveRight();
+                do count.setZero();
+                do Sys.wait(speed.getSpeed());
+            }
+            if (key = 130){
+                do MoveLeft();
+                do count.setZero();
+                do Sys.wait(speed.getSpeed());
             }
         }
-        if (position.GetPosition() = 1){
-            let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
-            let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
-            do Sys.wait(speed.getSpeed());
-            if (((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)) & ((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)))
-            {  
-                do Screen.setColor(false);
-                do Clear();
-                do fallToPixels();
-                do Screen.setColor(true);
-                do printZFigureRight();
-                do fall();
+        if (Move = false){
+            if (position.GetPosition() = 0){
+                let address1 = 16384 + ((Square1.getSquareY() + 16) * 32) + (Square1.getSquareX() / 16);
+                let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
+                let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
+                let address4 = 16384 + ((Square4.getSquareY() + 16) * 32) + (Square4.getSquareX() / 16);
+                do Sys.wait(speed.getSpeed());
+                if (((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)) & ((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)) & ((Memory.peek(address4) > 0) | (Memory.peek(address4) = 0)))
+                { 
+                    do Clear();
+                    do fallToPixels();
+                    do Screen.setColor(true);
+                    do printZFigureRight();
+                    do fall();
+                }
             }
-        }
-        if (position.GetPosition() = 2){
-            let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
-            let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
-            let address4 = 16384 + ((Square4.getSquareY() + 16) * 32) + (Square4.getSquareX() / 16);
-            do Sys.wait(speed.getSpeed());
-            if (((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)) & ((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)) & ((Memory.peek(address4) > 0) | (Memory.peek(address4) = 0)))
-            { 
-                do Screen.setColor(false);
-                do Clear();
-                do fallToPixels();
-                do Screen.setColor(true);
-                do printZFigureRight();
-                do fall();
+            if (position.GetPosition() = 1){
+                let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
+                let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
+                do Sys.wait(speed.getSpeed());
+                if (((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)) & ((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)))
+                {  
+                    do Clear();
+                    do fallToPixels();
+                    do Screen.setColor(true);
+                    do printZFigureRight();
+                    do fall();
+                }
             }
-        }
-        if (position.GetPosition() = 3){
-            let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
-            let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
-            do Sys.wait(speed.getSpeed());
-            if (((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)) & ((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)))
-            {  
-                do Screen.setColor(false);
-                do Clear();
-                do fallToPixels();
-                do Screen.setColor(true);
-                do printZFigureRight();
-                do fall();
+            if (position.GetPosition() = 2){
+                let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
+                let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
+                let address4 = 16384 + ((Square4.getSquareY() + 16) * 32) + (Square4.getSquareX() / 16);
+                do Sys.wait(speed.getSpeed());
+                if (((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)) & ((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)) & ((Memory.peek(address4) > 0) | (Memory.peek(address4) = 0)))
+                { 
+                    do Clear();
+                    do fallToPixels();
+                    do Screen.setColor(true);
+                    do printZFigureRight();
+                    do fall();
+                }
             }
+            if (position.GetPosition() = 3){
+                let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
+                let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
+                do Sys.wait(speed.getSpeed());
+                if (((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)) & ((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)))
+                {  
+                    do Clear();
+                    do fallToPixels();
+                    do Screen.setColor(true);
+                    do printZFigureRight();
+                    do fall();
+                }
+            }
+            return;
         }
+        let Move = false;
+        do fall();
         return;
     }
     method void fallToPixels(){
@@ -201,35 +214,39 @@ class ZFigureRight{
         return;
     }
     method void MoveRight(){
-        do Screen.setColor(false);
+        let Move = true;
         do Clear();
         do Screen.setColor(true);
-        do Square1.setSquare(Square1.getSquareX() + 16, Square1.getSquareY());
-        do Square2.setSquare(Square2.getSquareX() + 16, Square2.getSquareY());
-        do Square3.setSquare(Square3.getSquareX() + 16, Square3.getSquareY());
-        do Square4.setSquare(Square4.getSquareX() + 16, Square4.getSquareY());
+        do Square1.setSquare(Square1.getSquareX() + 16, Square1.getSquareY() + 16);
+        do Square2.setSquare(Square2.getSquareX() + 16, Square2.getSquareY() + 16);
+        do Square3.setSquare(Square3.getSquareX() + 16, Square3.getSquareY() + 16);
+        do Square4.setSquare(Square4.getSquareX() + 16, Square4.getSquareY() + 16);
         if (CanDrawFigure() = false){
-            do Square1.setSquare(Square1.getSquareX() - 16, Square1.getSquareY());
-            do Square2.setSquare(Square2.getSquareX() - 16, Square2.getSquareY());
-            do Square3.setSquare(Square3.getSquareX() - 16, Square3.getSquareY());
-            do Square4.setSquare(Square4.getSquareX() - 16, Square4.getSquareY());
+            do Square1.setSquare(Square1.getSquareX() - 16, Square1.getSquareY() -  16);
+            do Square2.setSquare(Square2.getSquareX() - 16, Square2.getSquareY() -  16);
+            do Square3.setSquare(Square3.getSquareX() - 16, Square3.getSquareY() -  16);
+            do Square4.setSquare(Square4.getSquareX() - 16, Square4.getSquareY() -  16);
+            let Move = false;
         }
+        do printZFigureRight();
         return;
     }
     method void MoveLeft(){
-        do Screen.setColor(false);
+        let Move = true;
         do Clear();
         do Screen.setColor(true);
-        do Square1.setSquare(Square1.getSquareX() - 16, Square1.getSquareY());
-        do Square2.setSquare(Square2.getSquareX() - 16, Square2.getSquareY());
-        do Square3.setSquare(Square3.getSquareX() - 16, Square3.getSquareY());
-        do Square4.setSquare(Square4.getSquareX() - 16, Square4.getSquareY());
+        do Square1.setSquare(Square1.getSquareX() - 16, Square1.getSquareY() + 16);
+        do Square2.setSquare(Square2.getSquareX() - 16, Square2.getSquareY() + 16);
+        do Square3.setSquare(Square3.getSquareX() - 16, Square3.getSquareY() + 16);
+        do Square4.setSquare(Square4.getSquareX() - 16, Square4.getSquareY() + 16);
         if (CanDrawFigure() = false){
-            do Square1.setSquare(Square1.getSquareX() + 16, Square1.getSquareY());
-            do Square2.setSquare(Square2.getSquareX() + 16, Square2.getSquareY());
-            do Square3.setSquare(Square3.getSquareX() + 16, Square3.getSquareY());
-            do Square4.setSquare(Square4.getSquareX() + 16, Square4.getSquareY());
+            do Square1.setSquare(Square1.getSquareX() + 16, Square1.getSquareY() - 16);
+            do Square2.setSquare(Square2.getSquareX() + 16, Square2.getSquareY() - 16);
+            do Square3.setSquare(Square3.getSquareX() + 16, Square3.getSquareY() - 16);
+            do Square4.setSquare(Square4.getSquareX() + 16, Square4.getSquareY() - 16);
+            let Move = false;
         }
+        do printZFigureRight();
         return;
     }
     method void Clear(){

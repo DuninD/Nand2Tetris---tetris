@@ -1,4 +1,5 @@
 class BentLineUnder{
+    field bool Move;
     field Position position;
     field BasedSquare Square1;
     field BasedSquare Square2;
@@ -19,27 +20,27 @@ class BentLineUnder{
         let Square3 = square3;
         let Square4 = square4;
         let pos = Position.new();
+        let Move = false;
         let position = pos;
         do printBentLineUnder();
         do fall();
         return this;
     }
     
-    method BentLineUnder getSquare1(){
+    method BasedSquare getSquare1(){
         return Square1;
     }
-    method BentLineUnder getSquare2(){
+    method BasedSquare getSquare2(){
         return Square2;
     }
-    method BentLineUnder getSquare3(){
+    method BasedSquare getSquare3(){
         return Square3;
     }
-    method BentLineUnder getSquare4(){
+    method BasedSquare getSquare4(){
         return Square4;
     }
     method void TurnRightBentLineUnder(){
         if (position.GetPosition() = 1){
-            do Screen.setColor(false);
             do Clear();
             do Screen.setColor(true);
             do Square1.setSquare(Square1.getSquareX() + 16, Square1.getSquareY() + 16);
@@ -54,7 +55,6 @@ class BentLineUnder{
             }
         }
         if (position.GetPosition() = 2){
-            do Screen.setColor(false);
             do Clear();
             do Screen.setColor(true);
             do Square1.setSquare(Square1.getSquareX() - 16, Square1.getSquareY() + 16);
@@ -69,7 +69,6 @@ class BentLineUnder{
             }
         }
         if (position.GetPosition() = 3){
-            do Screen.setColor(false);
             do Clear();
             do Screen.setColor(true);
             do Square1.setSquare(Square1.getSquareX() - 16, Square1.getSquareY() - 16);
@@ -84,7 +83,6 @@ class BentLineUnder{
             }
         }
         if (position.GetPosition() = 0){
-            do Screen.setColor(false);
             do Clear();
             do Screen.setColor(true);
             do Square1.setSquare(Square1.getSquareX() + 16, Square1.getSquareY() - 16);
@@ -98,11 +96,11 @@ class BentLineUnder{
                 do Square4.setSquare(Square4.getSquareX(), Square4.getSquareY() - 32);
             }
         }
+        do printBentLineUnder();
         return;
     }
     method void TurnLeftBentLineUnder(){
         if (position.GetPosition() = 1){
-            do Screen.setColor(false);
             do Clear();
             do Screen.setColor(true);
             do Square1.setSquare(Square1.getSquareX() + 16, Square1.getSquareY() - 16);
@@ -117,7 +115,6 @@ class BentLineUnder{
             }
         }
         if (position.GetPosition() = 2){
-            do Screen.setColor(false);
             do Clear();
             do Screen.setColor(true);
             do Square1.setSquare(Square1.getSquareX() + 16, Square1.getSquareY() + 16);
@@ -132,7 +129,6 @@ class BentLineUnder{
             }
         }
         if (position.GetPosition() = 3){
-            do Screen.setColor(false);
             do Clear();
             do Screen.setColor(true);
             do Square1.setSquare(Square1.getSquareX()  - 16, Square1.getSquareY() + 16);
@@ -147,7 +143,6 @@ class BentLineUnder{
             }
         }
         if (position.GetPosition() = 0){
-            do Screen.setColor(false);
             do Clear();
             do Screen.setColor(true);
             do Square1.setSquare(Square1.getSquareX() - 16, Square1.getSquareY() - 16);
@@ -161,9 +156,11 @@ class BentLineUnder{
                 do Square4.setSquare(Square4.getSquareX() - 32, Square4.getSquareY());
             }
         }
+        do printBentLineUnder();
         return;
     }
     method void fall(){
+        var MovementTime count;
         var int key;
         var Speed speed;
         var int address1;
@@ -171,80 +168,92 @@ class BentLineUnder{
         var int address3;
         var int address4;
         let speed = Speed.new();
-        let key = Keyboard.keyPressed();
-        if (key = 131){
-            do position.TurnRight();
-            do TurnRightBentLineUnder();
-        }
-        if (key = 133){
-            do position.TurnLeft();
-            do TurnLeftBentLineUnder();
-        }
-        if (key = 132){
-            do MoveRight();
-        }
-        if (key = 130){
-            do MoveLeft();
-        }
-        do Sys.wait(speed.getSpeed());
-        if (position.GetPosition() = 0){
-            let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
-            let address4 = 16384 + ((Square4.getSquareY() + 16) * 32) + (Square4.getSquareX() / 16);
-            do Sys.wait(speed.getSpeed());
-            if (((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)) & ((Memory.peek(address4) > 0) | (Memory.peek(address4) = 0)))
-            { 
-                do Screen.setColor(false);
-                do Clear();
-                do fallToPixels();
-                do Screen.setColor(true);
-                do printBentLineUnder();
-                do fall();
+        let count = MovementTime.new();
+        while(count.getMovementTime() > 0){
+            do count.Minus();
+            let key = Keyboard.keyPressed();
+            if (key = 131){
+                do position.TurnRight();
+                do TurnRightBentLineUnder();
+                do count.setZero();
+                do Sys.wait(speed.getSpeed());
+            }
+            if (key = 133){
+                do position.TurnLeft();
+                do TurnLeftBentLineUnder();
+                do count.setZero();
+                do Sys.wait(speed.getSpeed());
+            }
+            if (key = 132){
+                do MoveRight();
+                do count.setZero();
+                do Sys.wait(speed.getSpeed());
+            }
+            if (key = 130){
+                do MoveLeft();
+                do count.setZero();
+                do Sys.wait(speed.getSpeed());
             }
         }
-        if (position.GetPosition() = 1){
-            let address1 = 16384 + ((Square1.getSquareY() + 16) * 32) + (Square1.getSquareX() / 16);
-            let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
-            let address4 = 16384 + ((Square4.getSquareY() + 16) * 32) + (Square4.getSquareX() / 16);
-            do Sys.wait(speed.getSpeed());
-            if (((Memory.peek(address1) > 0) | (Memory.peek(address1) = 0)) & ((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)) & ((Memory.peek(address4) > 0) | (Memory.peek(address4) = 0)))
-            {
-                do Screen.setColor(false);
-                do Clear();
-                do fallToPixels();
-                do Screen.setColor(true);
-                do printBentLineUnder();
-                do fall();
+        if (Move = false){
+            if (position.GetPosition() = 0){
+                let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
+                let address4 = 16384 + ((Square4.getSquareY() + 16) * 32) + (Square4.getSquareX() / 16);
+                do Sys.wait(speed.getSpeed());
+                if (((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)) & ((Memory.peek(address4) > 0) | (Memory.peek(address4) = 0)))
+                { 
+                    do Clear();
+                    do fallToPixels();
+                    do Screen.setColor(true);
+                    do printBentLineUnder();
+                    do fall();
+                }
             }
-        }
-        if (position.GetPosition() = 2){
-            let address1 = 16384 + ((Square1.getSquareY() + 16) * 32) + (Square1.getSquareX() / 16);
-            let address4 = 16384 + ((Square4.getSquareY() + 16) * 32) + (Square4.getSquareX() / 16);
-            do Sys.wait(speed.getSpeed());
-            if (((Memory.peek(address1) > 0) | (Memory.peek(address1) = 0)) & ((Memory.peek(address4) > 0) | (Memory.peek(address4) = 0)))
-            { 
-                do Screen.setColor(false);
-                do Clear();
-                do fallToPixels();
-                do Screen.setColor(true);
-                do printBentLineUnder();
-                do fall();
+            if (position.GetPosition() = 1){
+                let address1 = 16384 + ((Square1.getSquareY() + 16) * 32) + (Square1.getSquareX() / 16);
+                let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
+                let address4 = 16384 + ((Square4.getSquareY() + 16) * 32) + (Square4.getSquareX() / 16);
+                do Sys.wait(speed.getSpeed());
+                if (((Memory.peek(address1) > 0) | (Memory.peek(address1) = 0)) & ((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)) & ((Memory.peek(address4) > 0) | (Memory.peek(address4) = 0)))
+                {
+                    do Clear();
+                    do fallToPixels();
+                    do Screen.setColor(true);
+                    do printBentLineUnder();
+                    do fall();
+                }
             }
-        }
-        if (position.GetPosition() = 3){
-            let address1 = 16384 + ((Square1.getSquareY() + 16) * 32) + (Square1.getSquareX() / 16);
-            let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
-            let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
-            do Sys.wait(speed.getSpeed());
-            if (((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)) & ((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)) & ((Memory.peek(address1) > 0) | (Memory.peek(address1) = 0)))
-            {  
-                do Screen.setColor(false);
-                do Clear();
-                do fallToPixels();
-                do Screen.setColor(true);
-                do printBentLineUnder();
-                do fall();
+            if (position.GetPosition() = 2){
+                let address1 = 16384 + ((Square1.getSquareY() + 16) * 32) + (Square1.getSquareX() / 16);
+                let address4 = 16384 + ((Square4.getSquareY() + 16) * 32) + (Square4.getSquareX() / 16);
+                do Sys.wait(speed.getSpeed());
+                if (((Memory.peek(address1) > 0) | (Memory.peek(address1) = 0)) & ((Memory.peek(address4) > 0) | (Memory.peek(address4) = 0)))
+                { 
+                    do Clear();
+                    do fallToPixels();
+                    do Screen.setColor(true);
+                    do printBentLineUnder();
+                    do fall();
+                }
             }
+            if (position.GetPosition() = 3){
+                let address1 = 16384 + ((Square1.getSquareY() + 16) * 32) + (Square1.getSquareX() / 16);
+                let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
+                let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
+                do Sys.wait(speed.getSpeed());
+                if (((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)) & ((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)) & ((Memory.peek(address1) > 0) | (Memory.peek(address1) = 0)))
+                {  
+                    do Clear();
+                    do fallToPixels();
+                    do Screen.setColor(true);
+                    do printBentLineUnder();
+                    do fall();
+                }
+            }
+            return;
         }
+        let Move = false;
+        do fall();
         return;
     }
     method void fallToPixels(){
@@ -264,35 +273,39 @@ class BentLineUnder{
         return;
     }
     method void MoveRight(){
-        do Screen.setColor(false);
+        let Move = true;
         do Clear();
         do Screen.setColor(true);
-        do Square1.setSquare(Square1.getSquareX() + 16, Square1.getSquareY());
-        do Square2.setSquare(Square2.getSquareX() + 16, Square2.getSquareY());
-        do Square3.setSquare(Square3.getSquareX() + 16, Square3.getSquareY());
-        do Square4.setSquare(Square4.getSquareX() + 16, Square4.getSquareY());
+        do Square1.setSquare(Square1.getSquareX() + 16, Square1.getSquareY() + 16);
+        do Square2.setSquare(Square2.getSquareX() + 16, Square2.getSquareY() + 16);
+        do Square3.setSquare(Square3.getSquareX() + 16, Square3.getSquareY() + 16);
+        do Square4.setSquare(Square4.getSquareX() + 16, Square4.getSquareY() + 16);
         if (CanDrawFigure() = false){
-            do Square1.setSquare(Square1.getSquareX() - 16, Square1.getSquareY());
-            do Square2.setSquare(Square2.getSquareX() - 16, Square2.getSquareY());
-            do Square3.setSquare(Square3.getSquareX() - 16, Square3.getSquareY());
-            do Square4.setSquare(Square4.getSquareX() - 16, Square4.getSquareY());
+            do Square1.setSquare(Square1.getSquareX() - 16, Square1.getSquareY() - 16);
+            do Square2.setSquare(Square2.getSquareX() - 16, Square2.getSquareY() - 16);
+            do Square3.setSquare(Square3.getSquareX() - 16, Square3.getSquareY() - 16);
+            do Square4.setSquare(Square4.getSquareX() - 16, Square4.getSquareY() - 16);
+            let Move = false;
         }
+        do printBentLineUnder();
         return;
     }
     method void MoveLeft(){
-        do Screen.setColor(false);
+        let Move = true;
         do Clear();
         do Screen.setColor(true);
-        do Square1.setSquare(Square1.getSquareX() - 16, Square1.getSquareY());
-        do Square2.setSquare(Square2.getSquareX() - 16, Square2.getSquareY());
-        do Square3.setSquare(Square3.getSquareX() - 16, Square3.getSquareY());
-        do Square4.setSquare(Square4.getSquareX() - 16, Square4.getSquareY());
+        do Square1.setSquare(Square1.getSquareX() - 16, Square1.getSquareY() + 16);
+        do Square2.setSquare(Square2.getSquareX() - 16, Square2.getSquareY() + 16);
+        do Square3.setSquare(Square3.getSquareX() - 16, Square3.getSquareY() + 16);
+        do Square4.setSquare(Square4.getSquareX() - 16, Square4.getSquareY() + 16);
         if (CanDrawFigure() = false){
-            do Square1.setSquare(Square1.getSquareX() + 16, Square1.getSquareY());
-            do Square2.setSquare(Square2.getSquareX() + 16, Square2.getSquareY());
-            do Square3.setSquare(Square3.getSquareX() + 16, Square3.getSquareY());
-            do Square4.setSquare(Square4.getSquareX() + 16, Square4.getSquareY());
+            do Square1.setSquare(Square1.getSquareX() + 16, Square1.getSquareY() - 16);
+            do Square2.setSquare(Square2.getSquareX() + 16, Square2.getSquareY() - 16);
+            do Square3.setSquare(Square3.getSquareX() + 16, Square3.getSquareY() - 16);
+            do Square4.setSquare(Square4.getSquareX() + 16, Square4.getSquareY() - 16);
+            let Move = false;
         }
+        do printBentLineUnder();
         return;
     }
     method void Clear(){

@@ -1,10 +1,14 @@
 class Speed{
     field int Value;
     constructor Speed new(){
-        let Value = 30;
+        let Value = 200;
         return this;
     }
     method int getSpeed(){
         return Value;
+    }
+    method void setValue(int value){
+        let Value = value;
+        return;
     }
 }

@@ -1,5 +1,5 @@
 function ZFigureRight.new 5
-push constant 5
+push constant 6
 call Memory.alloc 1
 pop pointer 0
 call Position.new 0
@@ -28,16 +28,18 @@ push constant 16
 add
 call BasedSquare.new 2
 pop local 4
-push local 1
-pop this 1
-push local 2
-pop this 2
-push local 3
-pop this 3
-push local 4
-pop this 4
-push local 0
+push constant 0
 pop this 0
+push local 1
+pop this 2
+push local 2
+pop this 3
+push local 3
+pop this 4
+push local 4
+pop this 5
+push local 0
+pop this 1
 push pointer 0
 call ZFigureRight.printZFigureRight 1
 pop temp 0
@@ -49,36 +51,33 @@ return
 function ZFigureRight.getSquare1 0
 push argument 0
 pop pointer 0
-push this 1
+push this 2
 return
 function ZFigureRight.getSquare2 0
 push argument 0
 pop pointer 0
-push this 2
+push this 3
 return
 function ZFigureRight.getSquare3 0
 push argument 0
 pop pointer 0
-push this 3
+push this 4
 return
 function ZFigureRight.getSquare4 0
 push argument 0
 pop pointer 0
-push this 4
+push this 5
 return
 function ZFigureRight.TurnZFigureRight 0
 push argument 0
 pop pointer 0
-push this 0
+push this 1
 call Position.GetPosition 1
 push constant 1
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push constant 0
-call Screen.setColor 1
-pop temp 0
 push pointer 0
 call ZFigureRight.Clear 1
 pop temp 0
@@ -86,35 +85,35 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 1
-push this 1
+push this 2
+push this 2
 call BasedSquare.getSquareX 1
-push this 1
+push this 2
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 2
-push this 2
+push this 3
+push this 3
 call BasedSquare.getSquareX 1
-push this 2
+push this 3
 call BasedSquare.getSquareY 1
 push constant 32
 add
 call BasedSquare.setSquare 3
 pop temp 0
-push this 3
-push this 3
+push this 4
+push this 4
 call BasedSquare.getSquareX 1
-push this 3
+push this 4
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 4
-push this 4
+push this 5
+push this 5
 call BasedSquare.getSquareX 1
 push constant 32
 add
-push this 4
+push this 5
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
@@ -125,50 +124,47 @@ eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 1
-push this 1
+push this 2
+push this 2
 call BasedSquare.getSquareX 1
-push this 1
+push this 2
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 2
-push this 2
+push this 3
+push this 3
 call BasedSquare.getSquareX 1
-push this 2
+push this 3
 call BasedSquare.getSquareY 1
 push constant 32
 sub
 call BasedSquare.setSquare 3
 pop temp 0
-push this 3
-push this 3
+push this 4
+push this 4
 call BasedSquare.getSquareX 1
-push this 3
+push this 4
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 4
-push this 4
+push this 5
+push this 5
 call BasedSquare.getSquareX 1
 push constant 32
 sub
-push this 4
+push this 5
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
 label IF_FALSE1
 label IF_FALSE0
-push this 0
+push this 1
 call Position.GetPosition 1
 push constant 2
 eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push constant 0
-call Screen.setColor 1
-pop temp 0
 push pointer 0
 call ZFigureRight.Clear 1
 pop temp 0
@@ -176,35 +172,35 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 1
-push this 1
+push this 2
+push this 2
 call BasedSquare.getSquareX 1
-push this 1
+push this 2
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 2
-push this 2
+push this 3
+push this 3
 call BasedSquare.getSquareX 1
-push this 2
+push this 3
 call BasedSquare.getSquareY 1
 push constant 32
 sub
 call BasedSquare.setSquare 3
 pop temp 0
-push this 3
-push this 3
+push this 4
+push this 4
 call BasedSquare.getSquareX 1
-push this 3
+push this 4
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 4
-push this 4
+push this 5
+push this 5
 call BasedSquare.getSquareX 1
 push constant 32
 sub
-push this 4
+push this 5
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
@@ -215,50 +211,47 @@ eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push this 1
-push this 1
+push this 2
+push this 2
 call BasedSquare.getSquareX 1
-push this 1
+push this 2
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 2
-push this 2
+push this 3
+push this 3
 call BasedSquare.getSquareX 1
-push this 2
+push this 3
 call BasedSquare.getSquareY 1
 push constant 32
 add
 call BasedSquare.setSquare 3
 pop temp 0
-push this 3
-push this 3
+push this 4
+push this 4
 call BasedSquare.getSquareX 1
-push this 3
+push this 4
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 4
-push this 4
+push this 5
+push this 5
 call BasedSquare.getSquareX 1
 push constant 32
 add
-push this 4
+push this 5
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
 label IF_FALSE3
 label IF_FALSE2
-push this 0
+push this 1
 call Position.GetPosition 1
 push constant 3
 eq
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
-push constant 0
-call Screen.setColor 1
-pop temp 0
 push pointer 0
 call ZFigureRight.Clear 1
 pop temp 0
@@ -266,35 +259,35 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 1
-push this 1
+push this 2
+push this 2
 call BasedSquare.getSquareX 1
-push this 1
+push this 2
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 2
-push this 2
+push this 3
+push this 3
 call BasedSquare.getSquareX 1
-push this 2
+push this 3
 call BasedSquare.getSquareY 1
 push constant 32
 add
 call BasedSquare.setSquare 3
 pop temp 0
-push this 3
-push this 3
+push this 4
+push this 4
 call BasedSquare.getSquareX 1
-push this 3
+push this 4
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 4
-push this 4
+push this 5
+push this 5
 call BasedSquare.getSquareX 1
 push constant 32
 add
-push this 4
+push this 5
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
@@ -305,50 +298,47 @@ eq
 if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
-push this 1
-push this 1
+push this 2
+push this 2
 call BasedSquare.getSquareX 1
-push this 1
+push this 2
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 2
-push this 2
+push this 3
+push this 3
 call BasedSquare.getSquareX 1
-push this 2
+push this 3
 call BasedSquare.getSquareY 1
 push constant 32
 sub
 call BasedSquare.setSquare 3
 pop temp 0
-push this 3
-push this 3
+push this 4
+push this 4
 call BasedSquare.getSquareX 1
-push this 3
+push this 4
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 4
-push this 4
+push this 5
+push this 5
 call BasedSquare.getSquareX 1
 push constant 32
 sub
-push this 4
+push this 5
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
 label IF_FALSE5
 label IF_FALSE4
-push this 0
+push this 1
 call Position.GetPosition 1
 push constant 0
 eq
 if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
-push constant 0
-call Screen.setColor 1
-pop temp 0
 push pointer 0
 call ZFigureRight.Clear 1
 pop temp 0
@@ -356,35 +346,35 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 1
-push this 1
+push this 2
+push this 2
 call BasedSquare.getSquareX 1
-push this 1
+push this 2
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 2
-push this 2
+push this 3
+push this 3
 call BasedSquare.getSquareX 1
-push this 2
+push this 3
 call BasedSquare.getSquareY 1
 push constant 32
 sub
 call BasedSquare.setSquare 3
 pop temp 0
-push this 3
-push this 3
+push this 4
+push this 4
 call BasedSquare.getSquareX 1
-push this 3
+push this 4
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 4
-push this 4
+push this 5
+push this 5
 call BasedSquare.getSquareX 1
 push constant 32
 sub
-push this 4
+push this 5
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
@@ -395,76 +385,105 @@ eq
 if-goto IF_TRUE7
 goto IF_FALSE7
 label IF_TRUE7
-push this 1
-push this 1
+push this 2
+push this 2
 call BasedSquare.getSquareX 1
-push this 1
+push this 2
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 2
-push this 2
+push this 3
+push this 3
 call BasedSquare.getSquareX 1
-push this 2
+push this 3
 call BasedSquare.getSquareY 1
 push constant 32
 add
 call BasedSquare.setSquare 3
 pop temp 0
-push this 3
-push this 3
+push this 4
+push this 4
 call BasedSquare.getSquareX 1
-push this 3
+push this 4
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
-push this 4
-push this 4
+push this 5
+push this 5
 call BasedSquare.getSquareX 1
 push constant 32
 add
-push this 4
+push this 5
 call BasedSquare.getSquareY 1
 call BasedSquare.setSquare 3
 pop temp 0
 label IF_FALSE7
 label IF_FALSE6
+push pointer 0
+call ZFigureRight.printZFigureRight 1
+pop temp 0
 push constant 0
 return
-function ZFigureRight.fall 6
+function ZFigureRight.fall 7
 push argument 0
 pop pointer 0
 call Speed.new 0
-pop local 1
-call Keyboard.keyPressed 0
+pop local 2
+call MovementTime.new 0
 pop local 0
+label WHILE_EXP0
 push local 0
+call MovementTime.getMovementTime 1
+push constant 0
+gt
+not
+if-goto WHILE_END0
+push local 0
+call MovementTime.Minus 1
+pop temp 0
+call Keyboard.keyPressed 0
+pop local 1
+push local 1
 push constant 131
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 0
+push this 1
 call Position.TurnRight 1
 pop temp 0
 push pointer 0
 call ZFigureRight.TurnZFigureRight 1
 pop temp 0
-label IF_FALSE0
 push local 0
+call MovementTime.setZero 1
+pop temp 0
+push local 2
+call Speed.getSpeed 1
+call Sys.wait 1
+pop temp 0
+label IF_FALSE0
+push local 1
 push constant 133
 eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 0
+push this 1
 call Position.TurnLeft 1
 pop temp 0
 push pointer 0
 call ZFigureRight.TurnZFigureRight 1
 pop temp 0
-label IF_FALSE1
 push local 0
+call MovementTime.setZero 1
+pop temp 0
+push local 2
+call Speed.getSpeed 1
+call Sys.wait 1
+pop temp 0
+label IF_FALSE1
+push local 1
 push constant 132
 eq
 if-goto IF_TRUE2
@@ -473,8 +492,15 @@ label IF_TRUE2
 push pointer 0
 call ZFigureRight.MoveRight 1
 pop temp 0
-label IF_FALSE2
 push local 0
+call MovementTime.setZero 1
+pop temp 0
+push local 2
+call Speed.getSpeed 1
+call Sys.wait 1
+pop temp 0
+label IF_FALSE2
+push local 1
 push constant 130
 eq
 if-goto IF_TRUE3
@@ -483,220 +509,29 @@ label IF_TRUE3
 push pointer 0
 call ZFigureRight.MoveLeft 1
 pop temp 0
-label IF_FALSE3
-push local 1
+push local 0
+call MovementTime.setZero 1
+pop temp 0
+push local 2
 call Speed.getSpeed 1
 call Sys.wait 1
 pop temp 0
+label IF_FALSE3
+goto WHILE_EXP0
+label WHILE_END0
 push this 0
-call Position.GetPosition 1
 push constant 0
 eq
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
-push constant 16384
 push this 1
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 1
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 2
-push constant 16384
-push this 2
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 2
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 3
-push constant 16384
-push this 3
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 3
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 4
-push constant 16384
-push this 4
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 4
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 5
-push local 1
-call Speed.getSpeed 1
-call Sys.wait 1
-pop temp 0
-push local 3
-call Memory.peek 1
-push constant 0
-gt
-push local 3
-call Memory.peek 1
+call Position.GetPosition 1
 push constant 0
 eq
-or
-push local 4
-call Memory.peek 1
-push constant 0
-gt
-push local 4
-call Memory.peek 1
-push constant 0
-eq
-or
-and
-push local 5
-call Memory.peek 1
-push constant 0
-gt
-push local 5
-call Memory.peek 1
-push constant 0
-eq
-or
-and
 if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push pointer 0
-call ZFigureRight.Clear 1
-pop temp 0
-push pointer 0
-call ZFigureRight.fallToPixels 1
-pop temp 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push pointer 0
-call ZFigureRight.printZFigureRight 1
-pop temp 0
-push pointer 0
-call ZFigureRight.fall 1
-pop temp 0
-label IF_FALSE5
-label IF_FALSE4
-push this 0
-call Position.GetPosition 1
-push constant 1
-eq
-if-goto IF_TRUE6
-goto IF_FALSE6
-label IF_TRUE6
-push constant 16384
-push this 3
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 3
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 4
-push constant 16384
-push this 2
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 2
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 3
-push local 1
-call Speed.getSpeed 1
-call Sys.wait 1
-pop temp 0
-push local 4
-call Memory.peek 1
-push constant 0
-gt
-push local 4
-call Memory.peek 1
-push constant 0
-eq
-or
-push local 3
-call Memory.peek 1
-push constant 0
-gt
-push local 3
-call Memory.peek 1
-push constant 0
-eq
-or
-and
-if-goto IF_TRUE7
-goto IF_FALSE7
-label IF_TRUE7
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push pointer 0
-call ZFigureRight.Clear 1
-pop temp 0
-push pointer 0
-call ZFigureRight.fallToPixels 1
-pop temp 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push pointer 0
-call ZFigureRight.printZFigureRight 1
-pop temp 0
-push pointer 0
-call ZFigureRight.fall 1
-pop temp 0
-label IF_FALSE7
-label IF_FALSE6
-push this 0
-call Position.GetPosition 1
-push constant 2
-eq
-if-goto IF_TRUE8
-goto IF_FALSE8
-label IF_TRUE8
 push constant 16384
 push this 2
 call BasedSquare.getSquareY 1
@@ -739,19 +574,24 @@ push constant 16
 call Math.divide 2
 add
 pop local 5
-push local 1
+push constant 16384
+push this 5
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 5
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 6
+push local 2
 call Speed.getSpeed 1
 call Sys.wait 1
 pop temp 0
-push local 3
-call Memory.peek 1
-push constant 0
-gt
-push local 3
-call Memory.peek 1
-push constant 0
-eq
-or
 push local 4
 call Memory.peek 1
 push constant 0
@@ -761,7 +601,6 @@ call Memory.peek 1
 push constant 0
 eq
 or
-and
 push local 5
 call Memory.peek 1
 push constant 0
@@ -772,12 +611,19 @@ push constant 0
 eq
 or
 and
-if-goto IF_TRUE9
-goto IF_FALSE9
-label IF_TRUE9
+push local 6
+call Memory.peek 1
 push constant 0
-call Screen.setColor 1
-pop temp 0
+gt
+push local 6
+call Memory.peek 1
+push constant 0
+eq
+or
+and
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
 push pointer 0
 call ZFigureRight.Clear 1
 pop temp 0
@@ -794,15 +640,94 @@ pop temp 0
 push pointer 0
 call ZFigureRight.fall 1
 pop temp 0
-label IF_FALSE9
-label IF_FALSE8
-push this 0
+label IF_FALSE6
+label IF_FALSE5
+push this 1
 call Position.GetPosition 1
-push constant 3
+push constant 1
 eq
-if-goto IF_TRUE10
-goto IF_FALSE10
-label IF_TRUE10
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push constant 16384
+push this 4
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 4
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 5
+push constant 16384
+push this 3
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 3
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 4
+push local 2
+call Speed.getSpeed 1
+call Sys.wait 1
+pop temp 0
+push local 5
+call Memory.peek 1
+push constant 0
+gt
+push local 5
+call Memory.peek 1
+push constant 0
+eq
+or
+push local 4
+call Memory.peek 1
+push constant 0
+gt
+push local 4
+call Memory.peek 1
+push constant 0
+eq
+or
+and
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push pointer 0
+call ZFigureRight.Clear 1
+pop temp 0
+push pointer 0
+call ZFigureRight.fallToPixels 1
+pop temp 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push pointer 0
+call ZFigureRight.printZFigureRight 1
+pop temp 0
+push pointer 0
+call ZFigureRight.fall 1
+pop temp 0
+label IF_FALSE8
+label IF_FALSE7
+push this 1
+call Position.GetPosition 1
+push constant 2
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
 push constant 16384
 push this 3
 call BasedSquare.getSquareY 1
@@ -818,20 +743,34 @@ call Math.divide 2
 add
 pop local 4
 push constant 16384
-push this 2
+push this 4
 call BasedSquare.getSquareY 1
 push constant 16
 add
 push constant 32
 call Math.multiply 2
 add
-push this 2
+push this 4
 call BasedSquare.getSquareX 1
 push constant 16
 call Math.divide 2
 add
-pop local 3
-push local 1
+pop local 5
+push constant 16384
+push this 5
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 5
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 6
+push local 2
 call Speed.getSpeed 1
 call Sys.wait 1
 pop temp 0
@@ -844,22 +783,29 @@ call Memory.peek 1
 push constant 0
 eq
 or
-push local 3
+push local 5
 call Memory.peek 1
 push constant 0
 gt
-push local 3
+push local 5
 call Memory.peek 1
 push constant 0
 eq
 or
 and
-if-goto IF_TRUE11
-goto IF_FALSE11
-label IF_TRUE11
+push local 6
+call Memory.peek 1
 push constant 0
-call Screen.setColor 1
-pop temp 0
+gt
+push local 6
+call Memory.peek 1
+push constant 0
+eq
+or
+and
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
 push pointer 0
 call ZFigureRight.Clear 1
 pop temp 0
@@ -876,8 +822,95 @@ pop temp 0
 push pointer 0
 call ZFigureRight.fall 1
 pop temp 0
-label IF_FALSE11
 label IF_FALSE10
+label IF_FALSE9
+push this 1
+call Position.GetPosition 1
+push constant 3
+eq
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push constant 16384
+push this 4
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 4
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 5
+push constant 16384
+push this 3
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 3
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 4
+push local 2
+call Speed.getSpeed 1
+call Sys.wait 1
+pop temp 0
+push local 5
+call Memory.peek 1
+push constant 0
+gt
+push local 5
+call Memory.peek 1
+push constant 0
+eq
+or
+push local 4
+call Memory.peek 1
+push constant 0
+gt
+push local 4
+call Memory.peek 1
+push constant 0
+eq
+or
+and
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push pointer 0
+call ZFigureRight.Clear 1
+pop temp 0
+push pointer 0
+call ZFigureRight.fallToPixels 1
+pop temp 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push pointer 0
+call ZFigureRight.printZFigureRight 1
+pop temp 0
+push pointer 0
+call ZFigureRight.fall 1
+pop temp 0
+label IF_FALSE12
+label IF_FALSE11
+push constant 0
+return
+label IF_FALSE4
+push constant 0
+pop this 0
+push pointer 0
+call ZFigureRight.fall 1
+pop temp 0
 push constant 0
 return
 function ZFigureRight.fallToPixels 1
@@ -885,16 +918,6 @@ push argument 0
 pop pointer 0
 call CountPixelsMove.new 0
 pop local 0
-push this 1
-push this 1
-call BasedSquare.getSquareX 1
-push this 1
-call BasedSquare.getSquareY 1
-push local 0
-call CountPixelsMove.getCountPixelsMove 1
-add
-call BasedSquare.setSquare 3
-pop temp 0
 push this 2
 push this 2
 call BasedSquare.getSquareX 1
@@ -919,6 +942,16 @@ push this 4
 push this 4
 call BasedSquare.getSquareX 1
 push this 4
+call BasedSquare.getSquareY 1
+push local 0
+call CountPixelsMove.getCountPixelsMove 1
+add
+call BasedSquare.setSquare 3
+pop temp 0
+push this 5
+push this 5
+call BasedSquare.getSquareX 1
+push this 5
 call BasedSquare.getSquareY 1
 push local 0
 call CountPixelsMove.getCountPixelsMove 1
@@ -930,9 +963,6 @@ return
 function ZFigureRight.printZFigureRight 0
 push argument 0
 pop pointer 0
-push this 1
-call BasedSquare.printSquare 1
-pop temp 0
 push this 2
 call BasedSquare.printSquare 1
 pop temp 0
@@ -940,6 +970,9 @@ push this 3
 call BasedSquare.printSquare 1
 pop temp 0
 push this 4
+call BasedSquare.printSquare 1
+pop temp 0
+push this 5
 call BasedSquare.printSquare 1
 pop temp 0
 push constant 0
@@ -948,8 +981,8 @@ function ZFigureRight.MoveRight 0
 push argument 0
 pop pointer 0
 push constant 0
-call Screen.setColor 1
-pop temp 0
+not
+pop this 0
 push pointer 0
 call ZFigureRight.Clear 1
 pop temp 0
@@ -957,15 +990,6 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 1
-push this 1
-call BasedSquare.getSquareX 1
-push constant 16
-add
-push this 1
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
 push this 2
 push this 2
 call BasedSquare.getSquareX 1
@@ -973,6 +997,8 @@ push constant 16
 add
 push this 2
 call BasedSquare.getSquareY 1
+push constant 16
+add
 call BasedSquare.setSquare 3
 pop temp 0
 push this 3
@@ -982,6 +1008,8 @@ push constant 16
 add
 push this 3
 call BasedSquare.getSquareY 1
+push constant 16
+add
 call BasedSquare.setSquare 3
 pop temp 0
 push this 4
@@ -991,6 +1019,19 @@ push constant 16
 add
 push this 4
 call BasedSquare.getSquareY 1
+push constant 16
+add
+call BasedSquare.setSquare 3
+pop temp 0
+push this 5
+push this 5
+call BasedSquare.getSquareX 1
+push constant 16
+add
+push this 5
+call BasedSquare.getSquareY 1
+push constant 16
+add
 call BasedSquare.setSquare 3
 pop temp 0
 push pointer 0
@@ -1000,15 +1041,6 @@ eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 1
-push this 1
-call BasedSquare.getSquareX 1
-push constant 16
-sub
-push this 1
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
 push this 2
 push this 2
 call BasedSquare.getSquareX 1
@@ -1016,6 +1048,8 @@ push constant 16
 sub
 push this 2
 call BasedSquare.getSquareY 1
+push constant 16
+sub
 call BasedSquare.setSquare 3
 pop temp 0
 push this 3
@@ -1025,6 +1059,8 @@ push constant 16
 sub
 push this 3
 call BasedSquare.getSquareY 1
+push constant 16
+sub
 call BasedSquare.setSquare 3
 pop temp 0
 push this 4
@@ -1034,17 +1070,35 @@ push constant 16
 sub
 push this 4
 call BasedSquare.getSquareY 1
+push constant 16
+sub
 call BasedSquare.setSquare 3
 pop temp 0
+push this 5
+push this 5
+call BasedSquare.getSquareX 1
+push constant 16
+sub
+push this 5
+call BasedSquare.getSquareY 1
+push constant 16
+sub
+call BasedSquare.setSquare 3
+pop temp 0
+push constant 0
+pop this 0
 label IF_FALSE0
+push pointer 0
+call ZFigureRight.printZFigureRight 1
+pop temp 0
 push constant 0
 return
 function ZFigureRight.MoveLeft 0
 push argument 0
 pop pointer 0
 push constant 0
-call Screen.setColor 1
-pop temp 0
+not
+pop this 0
 push pointer 0
 call ZFigureRight.Clear 1
 pop temp 0
@@ -1052,15 +1106,6 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 1
-push this 1
-call BasedSquare.getSquareX 1
-push constant 16
-sub
-push this 1
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
 push this 2
 push this 2
 call BasedSquare.getSquareX 1
@@ -1068,6 +1113,8 @@ push constant 16
 sub
 push this 2
 call BasedSquare.getSquareY 1
+push constant 16
+add
 call BasedSquare.setSquare 3
 pop temp 0
 push this 3
@@ -1077,6 +1124,8 @@ push constant 16
 sub
 push this 3
 call BasedSquare.getSquareY 1
+push constant 16
+add
 call BasedSquare.setSquare 3
 pop temp 0
 push this 4
@@ -1086,6 +1135,19 @@ push constant 16
 sub
 push this 4
 call BasedSquare.getSquareY 1
+push constant 16
+add
+call BasedSquare.setSquare 3
+pop temp 0
+push this 5
+push this 5
+call BasedSquare.getSquareX 1
+push constant 16
+sub
+push this 5
+call BasedSquare.getSquareY 1
+push constant 16
+add
 call BasedSquare.setSquare 3
 pop temp 0
 push pointer 0
@@ -1095,15 +1157,6 @@ eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 1
-push this 1
-call BasedSquare.getSquareX 1
-push constant 16
-add
-push this 1
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
 push this 2
 push this 2
 call BasedSquare.getSquareX 1
@@ -1111,6 +1164,8 @@ push constant 16
 add
 push this 2
 call BasedSquare.getSquareY 1
+push constant 16
+sub
 call BasedSquare.setSquare 3
 pop temp 0
 push this 3
@@ -1120,6 +1175,8 @@ push constant 16
 add
 push this 3
 call BasedSquare.getSquareY 1
+push constant 16
+sub
 call BasedSquare.setSquare 3
 pop temp 0
 push this 4
@@ -1129,17 +1186,32 @@ push constant 16
 add
 push this 4
 call BasedSquare.getSquareY 1
+push constant 16
+sub
 call BasedSquare.setSquare 3
 pop temp 0
+push this 5
+push this 5
+call BasedSquare.getSquareX 1
+push constant 16
+add
+push this 5
+call BasedSquare.getSquareY 1
+push constant 16
+sub
+call BasedSquare.setSquare 3
+pop temp 0
+push constant 0
+pop this 0
 label IF_FALSE0
+push pointer 0
+call ZFigureRight.printZFigureRight 1
+pop temp 0
 push constant 0
 return
 function ZFigureRight.Clear 0
 push argument 0
 pop pointer 0
-push this 1
-call BasedSquare.clear 1
-pop temp 0
 push this 2
 call BasedSquare.clear 1
 pop temp 0
@@ -1147,6 +1219,9 @@ push this 3
 call BasedSquare.clear 1
 pop temp 0
 push this 4
+call BasedSquare.clear 1
+pop temp 0
+push this 5
 call BasedSquare.clear 1
 pop temp 0
 push constant 0
@@ -1154,17 +1229,11 @@ return
 function ZFigureRight.CanDrawFigure 0
 push argument 0
 pop pointer 0
-push this 1
-call BasedSquare.CanDraw 1
-push constant 0
-not
-eq
 push this 2
 call BasedSquare.CanDraw 1
 push constant 0
 not
 eq
-and
 push this 3
 call BasedSquare.CanDraw 1
 push constant 0
@@ -1172,6 +1241,12 @@ not
 eq
 and
 push this 4
+call BasedSquare.CanDraw 1
+push constant 0
+not
+eq
+and
+push this 5
 call BasedSquare.CanDraw 1
 push constant 0
 not
