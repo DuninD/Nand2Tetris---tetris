@@ -1,5 +1,5 @@
 @echo off
 python run.py
 cd ..
-cd %CD%\vm\
+cd %CD%..\vm\
 JackCompiler.bat %CD%
