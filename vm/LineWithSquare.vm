@@ -1,7 +1,11 @@
 function LineWithSquare.new 5
-push constant 6
+push constant 8
 call Memory.alloc 1
 pop pointer 0
+call Speed.new 0
+pop this 1
+call MovementTime.new 0
+pop this 2
 push constant 0
 pop this 0
 call Position.new 0
@@ -31,15 +35,15 @@ sub
 call BasedSquare.new 2
 pop local 4
 push local 1
-pop this 2
-push local 2
-pop this 3
-push local 3
 pop this 4
-push local 4
+push local 2
 pop this 5
+push local 3
+pop this 6
+push local 4
+pop this 7
 push local 0
-pop this 1
+pop this 3
 push pointer 0
 call LineWithSquare.printLineWithSquare 1
 pop temp 0
@@ -48,117 +52,163 @@ call LineWithSquare.fall 1
 pop temp 0
 push pointer 0
 return
-function LineWithSquare.getSquare1 0
+function LineWithSquare.getSquare 0
 push argument 0
 pop pointer 0
-push this 2
-return
-function LineWithSquare.getSquare2 0
-push argument 0
-pop pointer 0
-push this 3
-return
-function LineWithSquare.getSquare3 0
-push argument 0
-pop pointer 0
-push this 4
-return
-function LineWithSquare.getSquare4 0
-push argument 0
-pop pointer 0
-push this 5
-return
-function LineWithSquare.TurnRightLineWithSquare 0
-push argument 0
-pop pointer 0
-push this 1
-call Position.GetPosition 1
+push argument 1
 push constant 1
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push pointer 0
-call LineWithSquare.Clear 1
-pop temp 0
+push this 4
+return
+label IF_FALSE0
+push argument 1
+push constant 2
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 5
+return
+label IF_FALSE1
+push argument 1
+push constant 3
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 6
+return
+label IF_FALSE2
+push argument 1
+push constant 4
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 7
+return
+label IF_FALSE3
 push constant 0
-not
-call Screen.setColor 1
+return
+function LineWithSquare.TryToMove 0
+push argument 0
+pop pointer 0
+push pointer 0
+call LineWithSquare.ClearLineWithSquare 1
 pop temp 0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push constant 16
-add
-push this 2
-call BasedSquare.getSquareY 1
-push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push this 4
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push this 5
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
+push pointer 0
+push argument 1
+push argument 2
+push argument 3
+push argument 4
+push argument 5
+push argument 6
+push argument 7
+push argument 8
+call LineWithSquare.MoveLineWithSquare 9
 pop temp 0
 push pointer 0
 call LineWithSquare.CanDrawFigure 1
 push constant 0
 eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push argument 1
+neg
+push argument 2
+neg
+push argument 3
+neg
+push argument 4
+neg
+push argument 5
+neg
+push argument 6
+neg
+push argument 7
+neg
+push argument 8
+neg
+call LineWithSquare.MoveLineWithSquare 9
+pop temp 0
+push pointer 0
+call LineWithSquare.printLineWithSquare 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push argument 9
+push constant 131
+eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push constant 16
-sub
-push this 2
-call BasedSquare.getSquareY 1
-push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
 push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
+call Position.TurnRight 1
 pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push this 4
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push this 5
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
+goto IF_END1
 label IF_FALSE1
+push this 3
+call Position.TurnLeft 1
+pop temp 0
+label IF_END1
+push pointer 0
+call LineWithSquare.printLineWithSquare 1
+pop temp 0
+label IF_END0
+push constant 0
+return
+function LineWithSquare.TurnRightLineWithSquare 0
+push argument 0
+pop pointer 0
+push this 3
+call Position.GetPosition 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push constant 16
+push constant 16
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push argument 1
+call LineWithSquare.TryToMove 10
+pop temp 0
 label IF_FALSE0
-push this 1
+push this 3
+call Position.GetPosition 1
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 16
+neg
+push constant 16
+push argument 1
+call LineWithSquare.TryToMove 10
+pop temp 0
+push constant 0
+return
+label IF_FALSE1
+push this 3
 call Position.GetPosition 1
 push constant 2
 eq
@@ -166,367 +216,100 @@ if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push pointer 0
-call LineWithSquare.Clear 1
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 16
+neg
+push constant 16
+neg
+push constant 0
+push constant 0
+push argument 1
+call LineWithSquare.TryToMove 10
 pop temp 0
 push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
+return
+label IF_FALSE2
 push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push this 4
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push constant 16
-sub
-push this 5
-call BasedSquare.getSquareY 1
-push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push pointer 0
-call LineWithSquare.CanDrawFigure 1
-push constant 0
+call Position.GetPosition 1
+push constant 3
 eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push this 4
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
+push pointer 0
 push constant 16
-add
-push this 5
-call BasedSquare.getSquareY 1
+neg
 push constant 16
-sub
-call BasedSquare.setSquare 3
+neg
+push constant 0
+push constant 0
+push constant 16
+push constant 16
+push constant 16
+push constant 16
+neg
+push argument 1
+call LineWithSquare.TryToMove 10
 pop temp 0
+push constant 0
+return
 label IF_FALSE3
-label IF_FALSE2
-push this 1
-call Position.GetPosition 1
-push constant 3
-eq
-if-goto IF_TRUE4
-goto IF_FALSE4
-label IF_TRUE4
-push pointer 0
-call LineWithSquare.Clear 1
-pop temp 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push constant 16
-sub
-push this 4
-call BasedSquare.getSquareY 1
-push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push this 5
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push pointer 0
-call LineWithSquare.CanDrawFigure 1
-push constant 0
-eq
-if-goto IF_TRUE5
-goto IF_FALSE5
-label IF_TRUE5
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push constant 16
-add
-push this 4
-call BasedSquare.getSquareY 1
-push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push this 5
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-label IF_FALSE5
-label IF_FALSE4
-push this 1
-call Position.GetPosition 1
-push constant 0
-eq
-if-goto IF_TRUE6
-goto IF_FALSE6
-label IF_TRUE6
-push pointer 0
-call LineWithSquare.Clear 1
-pop temp 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push constant 16
-sub
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push constant 16
-add
-push this 4
-call BasedSquare.getSquareY 1
-push constant 32
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push constant 16
-add
-push this 5
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push pointer 0
-call LineWithSquare.CanDrawFigure 1
-push constant 0
-eq
-if-goto IF_TRUE7
-goto IF_FALSE7
-label IF_TRUE7
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push constant 16
-add
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push constant 16
-sub
-push this 4
-call BasedSquare.getSquareY 1
-push constant 32
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push constant 16
-sub
-push this 5
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-label IF_FALSE7
-label IF_FALSE6
-push pointer 0
-call LineWithSquare.printLineWithSquare 1
-pop temp 0
 push constant 0
 return
 function LineWithSquare.TurnLeftLineWithSquare 0
 push argument 0
 pop pointer 0
-push this 1
+push this 3
 call Position.GetPosition 1
-push constant 1
+push constant 0
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push pointer 0
-call LineWithSquare.Clear 1
-pop temp 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push this 4
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
 push constant 16
-add
-push this 5
-call BasedSquare.getSquareY 1
 push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push pointer 0
-call LineWithSquare.CanDrawFigure 1
 push constant 0
+push constant 0
+push constant 16
+neg
+push constant 16
+neg
+push constant 16
+neg
+push constant 16
+push argument 1
+call LineWithSquare.TryToMove 10
+pop temp 0
+label IF_FALSE0
+push this 3
+call Position.GetPosition 1
+push constant 1
 eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push this 4
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
+push pointer 0
 push constant 16
-sub
-push this 5
-call BasedSquare.getSquareY 1
+neg
 push constant 16
-add
-call BasedSquare.setSquare 3
+neg
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push argument 1
+call LineWithSquare.TryToMove 10
 pop temp 0
+push constant 0
+return
 label IF_FALSE1
-label IF_FALSE0
-push this 1
+push this 3
 call Position.GetPosition 1
 push constant 2
 eq
@@ -534,341 +317,85 @@ if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push pointer 0
-call LineWithSquare.Clear 1
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 16
+push constant 16
+neg
+push argument 1
+call LineWithSquare.TryToMove 10
 pop temp 0
 push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
+return
+label IF_FALSE2
 push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push constant 16
-add
-push this 4
-call BasedSquare.getSquareY 1
-push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push this 5
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push pointer 0
-call LineWithSquare.CanDrawFigure 1
-push constant 0
+call Position.GetPosition 1
+push constant 3
 eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push constant 16
-sub
-push this 4
-call BasedSquare.getSquareY 1
-push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push this 5
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-label IF_FALSE3
-label IF_FALSE2
-push this 1
-call Position.GetPosition 1
-push constant 3
-eq
-if-goto IF_TRUE4
-goto IF_FALSE4
-label IF_TRUE4
 push pointer 0
-call LineWithSquare.Clear 1
-pop temp 0
 push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push constant 16
-add
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push constant 16
-sub
-push this 4
-call BasedSquare.getSquareY 1
-push constant 32
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push constant 16
-sub
-push this 5
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push pointer 0
-call LineWithSquare.CanDrawFigure 1
 push constant 0
-eq
-if-goto IF_TRUE5
-goto IF_FALSE5
-label IF_TRUE5
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push constant 16
-sub
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push constant 16
-add
-push this 4
-call BasedSquare.getSquareY 1
-push constant 32
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push constant 16
-add
-push this 5
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-label IF_FALSE5
-label IF_FALSE4
-push this 1
-call Position.GetPosition 1
 push constant 0
-eq
-if-goto IF_TRUE6
-goto IF_FALSE6
-label IF_TRUE6
-push pointer 0
-call LineWithSquare.Clear 1
-pop temp 0
 push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
 push constant 16
-sub
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
 push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push this 4
-call BasedSquare.getSquareY 1
-push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push this 5
-call BasedSquare.getSquareY 1
-push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push pointer 0
-call LineWithSquare.CanDrawFigure 1
 push constant 0
-eq
-if-goto IF_TRUE7
-goto IF_FALSE7
-label IF_TRUE7
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push constant 16
-add
-push this 2
-call BasedSquare.getSquareY 1
-call BasedSquare.setSquare 3
+push constant 0
+push argument 1
+call LineWithSquare.TryToMove 10
 pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push this 4
-call BasedSquare.getSquareY 1
-push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push this 5
-call BasedSquare.getSquareY 1
-push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-label IF_FALSE7
-label IF_FALSE6
 push constant 0
 return
-function LineWithSquare.fall 7
+label IF_FALSE3
+push constant 0
+return
+function LineWithSquare.fall 5
 push argument 0
 pop pointer 0
-call Speed.new 0
-pop local 2
 call MovementTime.new 0
-pop local 0
+pop this 2
 label WHILE_EXP0
-push local 0
+push this 2
 call MovementTime.getMovementTime 1
 push constant 0
 gt
 not
 if-goto WHILE_END0
-push local 0
+push this 2
 call MovementTime.Minus 1
 pop temp 0
 call Keyboard.keyPressed 0
-pop local 1
-push local 1
+pop local 0
+push local 0
 push constant 131
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 1
-call Position.TurnRight 1
-pop temp 0
 push pointer 0
-call LineWithSquare.TurnRightLineWithSquare 1
-pop temp 0
 push local 0
-call MovementTime.setZero 1
-pop temp 0
-push local 2
-call Speed.getSpeed 1
-call Sys.wait 1
+call LineWithSquare.TurnRightLineWithSquare 2
 pop temp 0
 label IF_FALSE0
-push local 1
+push local 0
 push constant 133
 eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 1
-call Position.TurnLeft 1
-pop temp 0
 push pointer 0
-call LineWithSquare.TurnLeftLineWithSquare 1
-pop temp 0
 push local 0
-call MovementTime.setZero 1
-pop temp 0
-push local 2
-call Speed.getSpeed 1
-call Sys.wait 1
+call LineWithSquare.TurnLeftLineWithSquare 2
 pop temp 0
 label IF_FALSE1
-push local 1
+push local 0
 push constant 132
 eq
 if-goto IF_TRUE2
@@ -877,15 +404,8 @@ label IF_TRUE2
 push pointer 0
 call LineWithSquare.MoveRight 1
 pop temp 0
-push local 0
-call MovementTime.setZero 1
-pop temp 0
-push local 2
-call Speed.getSpeed 1
-call Sys.wait 1
-pop temp 0
 label IF_FALSE2
-push local 1
+push local 0
 push constant 130
 eq
 if-goto IF_TRUE3
@@ -894,56 +414,291 @@ label IF_TRUE3
 push pointer 0
 call LineWithSquare.MoveLeft 1
 pop temp 0
-push local 0
-call MovementTime.setZero 1
-pop temp 0
-push local 2
-call Speed.getSpeed 1
-call Sys.wait 1
-pop temp 0
 label IF_FALSE3
+push local 0
+push constant 131
+eq
+push local 0
+push constant 133
+eq
+or
+push local 0
+push constant 132
+eq
+or
+push local 0
+push constant 130
+eq
+or
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+call LineWithSquare.BreakAndWait 1
+pop temp 0
+label IF_FALSE4
 goto WHILE_EXP0
 label WHILE_END0
-push local 2
+push this 1
 call Speed.getSpeed 1
 call Sys.wait 1
 pop temp 0
 push this 0
 push constant 0
 eq
-if-goto IF_TRUE4
-goto IF_FALSE4
-label IF_TRUE4
-push this 1
-call Position.GetPosition 1
-push constant 0
-eq
 if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
+push this 3
+call Position.GetPosition 1
+push constant 0
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
 push constant 16384
-push this 2
+push this 4
 call BasedSquare.getSquareY 1
 push constant 16
 add
 push constant 32
 call Math.multiply 2
 add
-push this 2
+push this 4
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push constant 16384
+push this 5
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 5
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 2
+push constant 16384
+push this 6
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 6
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 3
+push local 1
+call Memory.peek 1
+push constant 0
+gt
+push local 1
+call Memory.peek 1
+push constant 0
+eq
+or
+push local 2
+call Memory.peek 1
+push constant 0
+gt
+push local 2
+call Memory.peek 1
+push constant 0
+eq
+or
+and
+push local 3
+call Memory.peek 1
+push constant 0
+gt
+push local 3
+call Memory.peek 1
+push constant 0
+eq
+or
+and
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push pointer 0
+call LineWithSquare.MoveDownAndDraw 1
+pop temp 0
+label IF_FALSE7
+label IF_FALSE6
+push this 3
+call Position.GetPosition 1
+push constant 1
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push constant 16384
+push this 6
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 6
 call BasedSquare.getSquareX 1
 push constant 16
 call Math.divide 2
 add
 pop local 3
 push constant 16384
-push this 3
+push this 4
 call BasedSquare.getSquareY 1
 push constant 16
 add
 push constant 32
 call Math.multiply 2
 add
+push this 4
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push local 1
+call Memory.peek 1
+push constant 0
+gt
+push local 1
+call Memory.peek 1
+push constant 0
+eq
+or
+push local 3
+call Memory.peek 1
+push constant 0
+gt
+push local 3
+call Memory.peek 1
+push constant 0
+eq
+or
+and
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push pointer 0
+call LineWithSquare.MoveDownAndDraw 1
+pop temp 0
+label IF_FALSE9
+label IF_FALSE8
 push this 3
+call Position.GetPosition 1
+push constant 2
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push constant 16384
+push this 4
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 4
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push constant 16384
+push this 6
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 6
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 3
+push constant 16384
+push this 7
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 7
+call BasedSquare.getSquareX 1
+push constant 16
+call Math.divide 2
+add
+pop local 4
+push local 1
+call Memory.peek 1
+push constant 0
+gt
+push local 1
+call Memory.peek 1
+push constant 0
+eq
+or
+push local 3
+call Memory.peek 1
+push constant 0
+gt
+push local 3
+call Memory.peek 1
+push constant 0
+eq
+or
+and
+push local 4
+call Memory.peek 1
+push constant 0
+gt
+push local 4
+call Memory.peek 1
+push constant 0
+eq
+or
+and
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push pointer 0
+call LineWithSquare.MoveDownAndDraw 1
+pop temp 0
+label IF_FALSE11
+label IF_FALSE10
+push this 3
+call Position.GetPosition 1
+push constant 3
+eq
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push constant 16384
+push this 7
+call BasedSquare.getSquareY 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 7
 call BasedSquare.getSquareX 1
 push constant 16
 call Math.divide 2
@@ -962,16 +717,12 @@ call BasedSquare.getSquareX 1
 push constant 16
 call Math.divide 2
 add
-pop local 5
-push local 2
-call Speed.getSpeed 1
-call Sys.wait 1
-pop temp 0
-push local 3
+pop local 1
+push local 1
 call Memory.peek 1
 push constant 0
 gt
-push local 3
+push local 1
 call Memory.peek 1
 push constant 0
 eq
@@ -986,301 +737,17 @@ push constant 0
 eq
 or
 and
-push local 5
-call Memory.peek 1
-push constant 0
-gt
-push local 5
-call Memory.peek 1
-push constant 0
-eq
-or
-and
-if-goto IF_TRUE6
-goto IF_FALSE6
-label IF_TRUE6
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
 push pointer 0
-call LineWithSquare.Clear 1
+call LineWithSquare.MoveDownAndDraw 1
 pop temp 0
-push pointer 0
-call LineWithSquare.fallToPixels 1
-pop temp 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push pointer 0
-call LineWithSquare.printLineWithSquare 1
-pop temp 0
-push pointer 0
-call LineWithSquare.fall 1
-pop temp 0
-label IF_FALSE6
-label IF_FALSE5
-push this 1
-call Position.GetPosition 1
-push constant 1
-eq
-if-goto IF_TRUE7
-goto IF_FALSE7
-label IF_TRUE7
-push constant 16384
-push this 4
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 4
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 5
-push constant 16384
-push this 2
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 2
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 3
-push local 2
-call Speed.getSpeed 1
-call Sys.wait 1
-pop temp 0
-push local 3
-call Memory.peek 1
-push constant 0
-gt
-push local 3
-call Memory.peek 1
-push constant 0
-eq
-or
-push local 5
-call Memory.peek 1
-push constant 0
-gt
-push local 5
-call Memory.peek 1
-push constant 0
-eq
-or
-and
-if-goto IF_TRUE8
-goto IF_FALSE8
-label IF_TRUE8
-push pointer 0
-call LineWithSquare.Clear 1
-pop temp 0
-push pointer 0
-call LineWithSquare.fallToPixels 1
-pop temp 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push pointer 0
-call LineWithSquare.printLineWithSquare 1
-pop temp 0
-push pointer 0
-call LineWithSquare.fall 1
-pop temp 0
-label IF_FALSE8
-label IF_FALSE7
-push this 1
-call Position.GetPosition 1
-push constant 2
-eq
-if-goto IF_TRUE9
-goto IF_FALSE9
-label IF_TRUE9
-push constant 16384
-push this 2
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 2
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 3
-push constant 16384
-push this 4
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 4
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 5
-push constant 16384
-push this 5
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 5
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 6
-push local 2
-call Speed.getSpeed 1
-call Sys.wait 1
-pop temp 0
-push local 3
-call Memory.peek 1
-push constant 0
-gt
-push local 3
-call Memory.peek 1
-push constant 0
-eq
-or
-push local 5
-call Memory.peek 1
-push constant 0
-gt
-push local 5
-call Memory.peek 1
-push constant 0
-eq
-or
-and
-push local 6
-call Memory.peek 1
-push constant 0
-gt
-push local 6
-call Memory.peek 1
-push constant 0
-eq
-or
-and
-if-goto IF_TRUE10
-goto IF_FALSE10
-label IF_TRUE10
-push pointer 0
-call LineWithSquare.Clear 1
-pop temp 0
-push pointer 0
-call LineWithSquare.fallToPixels 1
-pop temp 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push pointer 0
-call LineWithSquare.printLineWithSquare 1
-pop temp 0
-push pointer 0
-call LineWithSquare.fall 1
-pop temp 0
-label IF_FALSE10
-label IF_FALSE9
-push this 1
-call Position.GetPosition 1
-push constant 3
-eq
-if-goto IF_TRUE11
-goto IF_FALSE11
-label IF_TRUE11
-push constant 16384
-push this 5
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 5
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 6
-push constant 16384
-push this 2
-call BasedSquare.getSquareY 1
-push constant 16
-add
-push constant 32
-call Math.multiply 2
-add
-push this 2
-call BasedSquare.getSquareX 1
-push constant 16
-call Math.divide 2
-add
-pop local 3
-push local 2
-call Speed.getSpeed 1
-call Sys.wait 1
-pop temp 0
-push local 3
-call Memory.peek 1
-push constant 0
-gt
-push local 3
-call Memory.peek 1
-push constant 0
-eq
-or
-push local 6
-call Memory.peek 1
-push constant 0
-gt
-push local 6
-call Memory.peek 1
-push constant 0
-eq
-or
-and
-if-goto IF_TRUE12
-goto IF_FALSE12
-label IF_TRUE12
-push pointer 0
-call LineWithSquare.Clear 1
-pop temp 0
-push pointer 0
-call LineWithSquare.fallToPixels 1
-pop temp 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push pointer 0
-call LineWithSquare.printLineWithSquare 1
-pop temp 0
-push pointer 0
-call LineWithSquare.fall 1
-pop temp 0
+label IF_FALSE13
 label IF_FALSE12
-label IF_FALSE11
 push constant 0
 return
-label IF_FALSE4
+label IF_FALSE5
 push constant 0
 pop this 0
 push pointer 0
@@ -1288,66 +755,40 @@ call LineWithSquare.fall 1
 pop temp 0
 push constant 0
 return
-function LineWithSquare.fallToPixels 1
+function LineWithSquare.fallToPixels 2
 push argument 0
 pop pointer 0
 call CountPixelsMove.new 0
 pop local 0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
-push this 2
-call BasedSquare.getSquareY 1
 push local 0
 call CountPixelsMove.getCountPixelsMove 1
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
-push this 3
-call BasedSquare.getSquareY 1
-push local 0
-call CountPixelsMove.getCountPixelsMove 1
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
-push this 4
-call BasedSquare.getSquareY 1
-push local 0
-call CountPixelsMove.getCountPixelsMove 1
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
-push this 5
-call BasedSquare.getSquareY 1
-push local 0
-call CountPixelsMove.getCountPixelsMove 1
-add
-call BasedSquare.setSquare 3
+pop local 1
+push pointer 0
+push constant 0
+push local 1
+push constant 0
+push local 1
+push constant 0
+push local 1
+push constant 0
+push local 1
+call LineWithSquare.MoveLineWithSquare 9
 pop temp 0
 push constant 0
 return
 function LineWithSquare.printLineWithSquare 0
 push argument 0
 pop pointer 0
-push this 2
-call BasedSquare.printSquare 1
-pop temp 0
-push this 3
-call BasedSquare.printSquare 1
-pop temp 0
 push this 4
 call BasedSquare.printSquare 1
 pop temp 0
 push this 5
+call BasedSquare.printSquare 1
+pop temp 0
+push this 6
+call BasedSquare.printSquare 1
+pop temp 0
+push this 7
 call BasedSquare.printSquare 1
 pop temp 0
 push constant 0
@@ -1359,55 +800,22 @@ push constant 0
 not
 pop this 0
 push pointer 0
-call LineWithSquare.Clear 1
+call LineWithSquare.ClearLineWithSquare 1
 pop temp 0
 push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
+push pointer 0
 push constant 16
-add
-push this 2
-call BasedSquare.getSquareY 1
 push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
 push constant 16
-add
-push this 3
-call BasedSquare.getSquareY 1
 push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
 push constant 16
-add
-push this 4
-call BasedSquare.getSquareY 1
 push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
 push constant 16
-add
-push this 5
-call BasedSquare.getSquareY 1
 push constant 16
-add
-call BasedSquare.setSquare 3
+call LineWithSquare.MoveLineWithSquare 9
 pop temp 0
 push pointer 0
 call LineWithSquare.CanDrawFigure 1
@@ -1416,49 +824,24 @@ eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
+push pointer 0
 push constant 16
-sub
-push this 2
-call BasedSquare.getSquareY 1
+neg
 push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
+neg
 push constant 16
-sub
-push this 3
-call BasedSquare.getSquareY 1
+neg
 push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
+neg
 push constant 16
-sub
-push this 4
-call BasedSquare.getSquareY 1
+neg
 push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
+neg
 push constant 16
-sub
-push this 5
-call BasedSquare.getSquareY 1
+neg
 push constant 16
-sub
-call BasedSquare.setSquare 3
+neg
+call LineWithSquare.MoveLineWithSquare 9
 pop temp 0
 push constant 0
 pop this 0
@@ -1475,55 +858,26 @@ push constant 0
 not
 pop this 0
 push pointer 0
-call LineWithSquare.Clear 1
+call LineWithSquare.ClearLineWithSquare 1
 pop temp 0
 push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
+push pointer 0
 push constant 16
-sub
-push this 2
-call BasedSquare.getSquareY 1
+neg
 push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
 push constant 16
-sub
-push this 3
-call BasedSquare.getSquareY 1
+neg
 push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
 push constant 16
-sub
-push this 4
-call BasedSquare.getSquareY 1
+neg
 push constant 16
-add
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
 push constant 16
-sub
-push this 5
-call BasedSquare.getSquareY 1
+neg
 push constant 16
-add
-call BasedSquare.setSquare 3
+call LineWithSquare.MoveLineWithSquare 9
 pop temp 0
 push pointer 0
 call LineWithSquare.CanDrawFigure 1
@@ -1532,49 +886,20 @@ eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 2
-push this 2
-call BasedSquare.getSquareX 1
+push pointer 0
 push constant 16
-add
-push this 2
-call BasedSquare.getSquareY 1
 push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 3
-push this 3
-call BasedSquare.getSquareX 1
+neg
 push constant 16
-add
-push this 3
-call BasedSquare.getSquareY 1
 push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 4
-push this 4
-call BasedSquare.getSquareX 1
+neg
 push constant 16
-add
-push this 4
-call BasedSquare.getSquareY 1
 push constant 16
-sub
-call BasedSquare.setSquare 3
-pop temp 0
-push this 5
-push this 5
-call BasedSquare.getSquareX 1
+neg
 push constant 16
-add
-push this 5
-call BasedSquare.getSquareY 1
 push constant 16
-sub
-call BasedSquare.setSquare 3
+neg
+call LineWithSquare.MoveLineWithSquare 9
 pop temp 0
 push constant 0
 pop this 0
@@ -1584,19 +909,101 @@ call LineWithSquare.printLineWithSquare 1
 pop temp 0
 push constant 0
 return
-function LineWithSquare.Clear 0
+function LineWithSquare.MoveLineWithSquare 0
+push argument 0
+pop pointer 0
+push this 4
+push this 4
+call BasedSquare.getSquareX 1
+push argument 1
+add
+push this 4
+call BasedSquare.getSquareY 1
+push argument 2
+add
+call BasedSquare.setSquare 3
+pop temp 0
+push this 5
+push this 5
+call BasedSquare.getSquareX 1
+push argument 3
+add
+push this 5
+call BasedSquare.getSquareY 1
+push argument 4
+add
+call BasedSquare.setSquare 3
+pop temp 0
+push this 6
+push this 6
+call BasedSquare.getSquareX 1
+push argument 5
+add
+push this 6
+call BasedSquare.getSquareY 1
+push argument 6
+add
+call BasedSquare.setSquare 3
+pop temp 0
+push this 7
+push this 7
+call BasedSquare.getSquareX 1
+push argument 7
+add
+push this 7
+call BasedSquare.getSquareY 1
+push argument 8
+add
+call BasedSquare.setSquare 3
+pop temp 0
+push constant 0
+return
+function LineWithSquare.MoveDownAndDraw 0
+push argument 0
+pop pointer 0
+push pointer 0
+call LineWithSquare.ClearLineWithSquare 1
+pop temp 0
+push pointer 0
+call LineWithSquare.fallToPixels 1
+pop temp 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push pointer 0
+call LineWithSquare.printLineWithSquare 1
+pop temp 0
+push pointer 0
+call LineWithSquare.fall 1
+pop temp 0
+push constant 0
+return
+function LineWithSquare.BreakAndWait 0
 push argument 0
 pop pointer 0
 push this 2
-call BasedSquare.clear 1
+call MovementTime.setZero 1
 pop temp 0
-push this 3
-call BasedSquare.clear 1
+push this 1
+call Speed.getSpeed 1
+call Sys.wait 1
 pop temp 0
+push constant 0
+return
+function LineWithSquare.ClearLineWithSquare 0
+push argument 0
+pop pointer 0
 push this 4
 call BasedSquare.clear 1
 pop temp 0
 push this 5
+call BasedSquare.clear 1
+pop temp 0
+push this 6
+call BasedSquare.clear 1
+pop temp 0
+push this 7
 call BasedSquare.clear 1
 pop temp 0
 push constant 0
@@ -1604,24 +1011,24 @@ return
 function LineWithSquare.CanDrawFigure 0
 push argument 0
 pop pointer 0
-push this 2
-call BasedSquare.CanDraw 1
-push constant 0
-not
-eq
-push this 3
-call BasedSquare.CanDraw 1
-push constant 0
-not
-eq
-and
 push this 4
 call BasedSquare.CanDraw 1
 push constant 0
 not
 eq
-and
 push this 5
+call BasedSquare.CanDraw 1
+push constant 0
+not
+eq
+and
+push this 6
+call BasedSquare.CanDraw 1
+push constant 0
+not
+eq
+and
+push this 7
 call BasedSquare.CanDraw 1
 push constant 0
 not
