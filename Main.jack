@@ -1,8 +1,16 @@
 class Main {
     function void main (){
-        var Game game;
+        var Line l;
+        //var Game game;
         do Interfase.drawInterfase();
-        do game.Game();
+        //do game.Game();
+        
+        let l = Line.new(180, 16);
+        let l = Line.new(180, 16);
+        let l = Line.new(180, 16);
+        let l = Line.new(180, 16);
+        let l = Line.new(180, 16);
+        let l = Line.new(180, 16);
         return;
     }
     

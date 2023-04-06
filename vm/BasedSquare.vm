@@ -141,20 +141,6 @@ pop pointer 0
 push constant 16384
 push this 0
 call Point.getY 1
-push constant 15
-add
-push constant 32
-call Math.multiply 2
-add
-push this 0
-call Point.getX 1
-push constant 16
-call Math.divide 2
-add
-pop local 0
-push constant 16384
-push this 0
-call Point.getY 1
 push constant 32
 call Math.multiply 2
 add
@@ -164,15 +150,6 @@ push constant 16
 call Math.divide 2
 add
 pop local 1
-push local 0
-call Memory.peek 1
-push constant 0
-gt
-push local 0
-call Memory.peek 1
-push constant 0
-eq
-or
 push local 1
 call Memory.peek 1
 push constant 0
@@ -182,7 +159,6 @@ call Memory.peek 1
 push constant 0
 eq
 or
-and
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0

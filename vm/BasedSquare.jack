@@ -42,9 +42,8 @@ class BasedSquare{
     method bool CanDraw(){
         var int formula1;
         var int formula2;
-        let formula1 = 16384 + ((LeftUpperCorner.getY() + 15) * 32) + (LeftUpperCorner.getX() / 16);
         let formula2 = 16384 + ((LeftUpperCorner.getY()) * 32) + (LeftUpperCorner.getX() / 16);
-        if (((Memory.peek(formula1) > 0) | (Memory.peek(formula1) = 0)) & ((Memory.peek(formula2) > 0) | (Memory.peek(formula2) = 0))){
+        if (((Memory.peek(formula2) > 0) | (Memory.peek(formula2) = 0))){
             return true;
         }
         return false;
