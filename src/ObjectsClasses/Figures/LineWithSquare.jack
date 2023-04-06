@@ -104,8 +104,7 @@ class LineWithSquare{
                 let address1 = 16384 + ((Square1.getSquareY() + 16) * 32) + (Square1.getSquareX() / 16);
                 let address2 = 16384 + ((Square2.getSquareY() + 16) * 32) + (Square2.getSquareX() / 16);
                 let address3 = 16384 + ((Square3.getSquareY() + 16) * 32) + (Square3.getSquareX() / 16);
-                if (((Memory.peek(address1) > 0) | (Memory.peek(address1) = 0)) & ((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)) & ((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0)))
-                { 
+                if (((Memory.peek(address1) > 0) | (Memory.peek(address1) = 0)) & ((Memory.peek(address2) > 0) | (Memory.peek(address2) = 0)) & ((Memory.peek(address3) > 0) | (Memory.peek(address3) = 0))){ 
                     do MoveDownAndDraw();
                 }
             }
