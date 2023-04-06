@@ -1,16 +1,8 @@
 class Main {
     function void main (){
-        var BentLineUnder l;
-        //var Game game;
+        var Game game;
         do Interfase.drawInterfase();
-        //do game.Game();
-        
-        let l = BentLineUnder.new(180, 16);
-        let l = BentLineUnder.new(180, 16);
-        let l = BentLineUnder.new(180, 16);
-        let l = BentLineUnder.new(180, 16);
-        let l = BentLineUnder.new(180, 16);
-        let l = BentLineUnder.new(180, 16);
+        do game.Game();
         return;
     }
     
